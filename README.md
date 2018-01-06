@@ -5,4 +5,4 @@
 [20180105](https://hysysk.github.io/dailycoding/motion/20180105)
 
 ## Simulation
-[20180106](https://hysysk.github.io/dailycoding/motion/20180106)
+[20180106](https://hysysk.github.io/dailycoding/simulation/20180106)
