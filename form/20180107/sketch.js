@@ -1,10 +1,10 @@
-let startX = 2.0;
-let startY = 2.0;
-let startYaw = deg2rad(-90.0);
-let endX = 8.0;
-let endY = 8.0;
-let endYaw = deg2rad(-90.0);
-let curvature = 1.0;
+const startX = 2.0;
+const startY = 2.0;
+const startYaw = deg2rad(-90.0);
+const endX = 8.0;
+const endY = 8.0;
+const endYaw = deg2rad(-90.0);
+const curvature = 1.0;
 
 function setup() {
   createCanvas(500, 500);
