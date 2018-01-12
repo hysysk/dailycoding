@@ -38,10 +38,10 @@ function setup() {
   endShape();
 }
 
-function drawArcPath(x, y, radius, angle, offsetAngle, details, clockwise) {
+function drawArcPath(x, y, radius, angle, offsetAngle, details, antiClockwise) {
   let anchorTheta = 0;
   let controlTheta = angle/details/3;
-  if(clockwise) {
+  if(antiClockwise) {
     controlTheta *= -1;
   }
   let controlRadius = radius/cos(controlTheta);
@@ -70,7 +70,7 @@ function drawArcPath(x, y, radius, angle, offsetAngle, details, clockwise) {
     cy2 = sin(anchorTheta + controlTheta*2 + offsetAngle) * controlRadius + y;
     controlsR.push(createVector(cx2, cy2));
 
-    if(clockwise) {
+    if(antiClockwise) {
       anchorTheta -= angle/details;
     } else {
       anchorTheta += angle/details;
