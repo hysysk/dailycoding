@@ -16,3 +16,4 @@
 [20180110](https://hysysk.github.io/dailycoding/form/20180110/)
 #### Graphic Design Manual
 [20180109](https://hysysk.github.io/dailycoding/form/20180109/)
+[20180112](https://hysysk.github.io/dailycoding/form/20180112/)
