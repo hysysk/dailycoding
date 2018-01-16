@@ -1,42 +1,51 @@
 function setup() {
   createCanvas(500, 500);
   background(255);
-  fill(0);
+  noStroke();
+  colorMode(HSB, 100);
 
   let x = -100;
-  let y = height/2;
+  let y = -100;
   let size = random(30, 100);
   let angle = random(-HALF_PI/2, HALF_PI/2);
   let nextSize = size;
   let nextAngle = angle;
   let antiClockwise = false;
 
-  beginShape();
-  vertex(0, height);
+  while(y < height + size) {
+    beginShape();
+    vertex(0, y);
 
-  while(x < width + size) {
-    nextSize = random(30, 100);
-    nextAngle = random(-HALF_PI/2, HALF_PI/2);
-    let diffAngle = nextAngle - angle;
-    if(antiClockwise) {
-      diffAngle *= -1;
+    fill(random(100), 100, 100);
+
+    while(x < width + size) {
+      nextSize = random(30, 100);
+      nextAngle = random(-HALF_PI/2, HALF_PI/2);
+      let diffAngle = nextAngle - angle;
+      if(antiClockwise) {
+        diffAngle *= -1;
+      }
+
+      drawArcPath(x, y, size/2, PI+diffAngle, PI+angle, 4, antiClockwise);
+
+      let nextX = x + cos(nextAngle) * (nextSize/2 + size/2);
+      let nextY = y + sin(nextAngle) * (nextSize/2 + size/2);
+
+      antiClockwise = !antiClockwise;
+
+      x = nextX;
+      y = nextY;
+      size = nextSize;
+      angle = nextAngle;
     }
 
-    drawArcPath(x, y, size/2, PI+diffAngle, PI+angle, 4, antiClockwise);
+    vertex(width, height);
+    vertex(0, height);
+    endShape();
 
-    let nextX = x + cos(nextAngle) * (nextSize/2 + size/2);
-    let nextY = y + sin(nextAngle) * (nextSize/2 + size/2);
-
-    antiClockwise = !antiClockwise;
-
-    x = nextX;
-    y = nextY;
-    size = nextSize;
-    angle = nextAngle;
+    x = -100;
+    y += 50;
   }
-
-  vertex(width, height);
-  endShape();
 }
 
 function drawArcPath(x, y, radius, angle, offsetAngle, details, antiClockwise) {
