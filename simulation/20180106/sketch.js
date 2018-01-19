@@ -5,11 +5,11 @@ function setup() {
 
   noStroke();
 
-  drawWaterColor(width/2-60, height/2+40, 160, color(245, 10, 50, 2));
-  drawWaterColor(width/2+60, height/2-40, 160, color(60, 55, 235, 2));
+  paintWaterColor(width/2-60, height/2+40, 160, color(245, 10, 50, 2));
+  paintWaterColor(width/2+60, height/2-40, 160, color(60, 55, 235, 2));
 }
 
-function drawWaterColor(x, y, radius, c) {
+function paintWaterColor(x, y, radius, c) {
   for(let j=0; j<50; j++) {
     let vertices = createBasicVertices(x, y, radius - j*0.1, floor(random(5, 10)));
 
