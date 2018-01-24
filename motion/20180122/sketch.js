@@ -25,7 +25,7 @@ class ParticleSystem {
     this.emissionFlags = [];
   }
 
-  addParticle(p) {
+  addParticle() {
     this.particles.push(new Particle(createVector(random(width), random(-10, -400))));
     this.emissionFlags.push(false);
   }
