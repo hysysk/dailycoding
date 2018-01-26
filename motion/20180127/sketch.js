@@ -54,18 +54,6 @@ class ParticleSystem {
       b.applyForce(f);
     }
 
-    fill(255);
-
-    beginShape();
-    curveVertex(this.particles[1].pos.x, this.particles[1].pos.y);
-    curveVertex(this.particles[0].pos.x, this.particles[0].pos.y);
-    for(let i=this.particles.length-1; i>=0; i--) {
-      curveVertex(this.particles[i].pos.x, this.particles[i].pos.y);
-    }
-    curveVertex(this.particles[this.particles.length-1].pos.x, this.particles[this.particles.length-1].pos.y);
-    curveVertex(this.particles[this.particles.length-2].pos.x, this.particles[this.particles.length-2].pos.y);
-    endShape();
-
     for(let i=this.particles.length-1; i>=0; i--) {
       for(let j=this.particles.length-1; j>=0; j--) {
         if(i != j) {
@@ -84,6 +72,18 @@ class ParticleSystem {
       this.particles[i].update();
       // this.particles[i].draw();
     }
+
+    fill(255);
+
+    beginShape();
+    curveVertex(this.particles[1].pos.x, this.particles[1].pos.y);
+    curveVertex(this.particles[0].pos.x, this.particles[0].pos.y);
+    for(let i=this.particles.length-1; i>=0; i--) {
+      curveVertex(this.particles[i].pos.x, this.particles[i].pos.y);
+    }
+    curveVertex(this.particles[this.particles.length-1].pos.x, this.particles[this.particles.length-1].pos.y);
+    curveVertex(this.particles[this.particles.length-2].pos.x, this.particles[this.particles.length-2].pos.y);
+    endShape();
   }
 }
 
