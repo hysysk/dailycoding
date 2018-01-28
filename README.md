@@ -30,6 +30,7 @@
 [20180115](https://hysysk.github.io/dailycoding/form/20180115/)
 [20180116](https://hysysk.github.io/dailycoding/form/20180116/)
 [20180117](https://hysysk.github.io/dailycoding/form/20180117/)
+[20180128](https://hysysk.github.io/dailycoding/form/20180128/)
 #### Phyllotactic Spiral
 [20180120](https://hysysk.github.io/dailycoding/form/20180120/)
 [20180121](https://hysysk.github.io/dailycoding/form/20180121/)
