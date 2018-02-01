@@ -1,7 +1,4 @@
 const FRAME_RATE = 30;
-const PARTICLE_SIZE = 10;
-const K = 0.32;
-const SPRING_LENGTH = 10.0;
 let ps;
 
 function setup() {
@@ -16,14 +13,14 @@ function setup() {
 function draw() {
   background(0);
   ps.run();
-  // fill(0, 10);
-  // rect(0, 0, width, height);
 }
 
 class ParticleSystem {
   constructor() {
     this.numParticles = 15;
     this.numSprings = this.numParticles;
+    this.k = 0.32;
+    this.springLength = 10.0;
     this.particles = [];
     for(let i=0; i<this.numParticles; i++) {
       let step = TWO_PI/this.numParticles;
@@ -48,27 +45,13 @@ class ParticleSystem {
       let b = this.springs[i].b;
       let f = p5.Vector.sub(a.pos, b.pos);
       let d = f.mag();
-      let stretch = d - SPRING_LENGTH;
+      let stretch = d - this.springLength;
       f.normalize();
-      f.mult(-1 * K * stretch);
+      f.mult(-1 * this.k * stretch);
       a.applyForce(f);
       f.mult(-1);
       b.applyForce(f);
     }
-
-    noFill();
-    stroke(255);
-    strokeWeight(2);
-
-    beginShape();
-    curveVertex(this.particles[1].pos.x, this.particles[1].pos.y);
-    curveVertex(this.particles[0].pos.x, this.particles[0].pos.y);
-    for(let i=this.particles.length-1; i>=0; i--) {
-      curveVertex(this.particles[i].pos.x, this.particles[i].pos.y);
-    }
-    curveVertex(this.particles[this.particles.length-1].pos.x, this.particles[this.particles.length-1].pos.y);
-    curveVertex(this.particles[this.particles.length-2].pos.x, this.particles[this.particles.length-2].pos.y);
-    endShape();
 
     for(let i=this.particles.length-1; i>=0; i--) {
       for(let j=this.particles.length-1; j>=0; j--) {
@@ -86,8 +69,21 @@ class ParticleSystem {
         }
       }
       this.particles[i].update();
-      // this.particles[i].draw();
     }
+
+    noFill();
+    stroke(255);
+    strokeWeight(2);
+
+    beginShape();
+    curveVertex(this.particles[1].pos.x, this.particles[1].pos.y);
+    curveVertex(this.particles[0].pos.x, this.particles[0].pos.y);
+    for(let i=this.particles.length-1; i>=0; i--) {
+      curveVertex(this.particles[i].pos.x, this.particles[i].pos.y);
+    }
+    curveVertex(this.particles[this.particles.length-1].pos.x, this.particles[this.particles.length-1].pos.y);
+    curveVertex(this.particles[this.particles.length-2].pos.x, this.particles[this.particles.length-2].pos.y);
+    endShape();
   }
 }
 
@@ -96,6 +92,7 @@ class Particle {
     this.pos = pos;
     this.vel = createVector(0, 0);
     this.acc = createVector(0, 0);
+    this.size = 10;
   }
 
   applyForce(frc) {
@@ -111,7 +108,7 @@ class Particle {
   draw() {
     fill(0);
     stroke(255);
-    ellipse(this.pos.x, this.pos.y, PARTICLE_SIZE, PARTICLE_SIZE);
+    ellipse(this.pos.x, this.pos.y, this.size, this.size);
   }
 }
 
