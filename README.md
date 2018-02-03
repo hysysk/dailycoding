@@ -5,7 +5,7 @@
 [20180104](https://hysysk.github.io/dailycoding/motion/20180104/)
 [20180105](https://hysysk.github.io/dailycoding/motion/20180105/)
 
-#### Physics
+#### Euler Integration
 [20180122](https://hysysk.github.io/dailycoding/motion/20180122/)
 [20180125](https://hysysk.github.io/dailycoding/motion/20180125/)
 [20180126](https://hysysk.github.io/dailycoding/motion/20180126/)
@@ -14,6 +14,8 @@
 [20180131](https://hysysk.github.io/dailycoding/motion/20180131/)
 [20180201](https://hysysk.github.io/dailycoding/motion/20180201/)
 [20180202](https://hysysk.github.io/dailycoding/motion/20180202/)
+#### Verlet Integration
+[20180203](https://hysysk.github.io/dailycoding/motion/20180203/)
 
 ## Simulation
 #### Watercolor
