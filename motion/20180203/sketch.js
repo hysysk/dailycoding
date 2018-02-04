@@ -63,8 +63,8 @@ class Square {
 
 class VerletPoint {
   constructor(pos) {
-    this.pos = pos.copy();
-    this.prevPos = pos.copy();
+    this.pos = pos;
+    this.prevPos = pos;
     this.size = 10;
   }
 
@@ -86,8 +86,8 @@ class VerletPoint {
   }
 
   set position(pos) {
-    this.pos = pos.copy();
-    this.prevPos = pos.copy();
+    this.pos = pos;
+    this.prevPos = pos;
   }
 
   set velocity(vel) {
