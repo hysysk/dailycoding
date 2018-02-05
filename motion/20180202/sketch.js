@@ -104,7 +104,6 @@ class Particle {
 
   applyForce(frc) {
     this.acc.add(frc);
-    this.vel.limit(5);
   }
 
   update() {
