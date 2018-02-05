@@ -105,7 +105,6 @@ class VerletPoint {
     let vel = p5.Vector.sub(this.pos, this.prevPos);
     this.prevPos = this.pos.copy();
     vel.add(this.acc);
-    // vel.limit(1);
     this.pos.add(vel);
     this.acc.mult(0);
 
