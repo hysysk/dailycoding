@@ -21,6 +21,10 @@ function setup() {
   drawPolygon(clipped);
 }
 
+// Sutherland-Hodgeman polygon clipping
+// https://rosettacode.org/wiki/Sutherland-Hodgman_polygon_clipping
+// GNU Free Documentation License 1.2 
+// http://www.gnu.org/licenses/fdl-1.2.html
 function clip(subjectPolygon, clipPolygon) {
   let cp1, cp2, s, e;
 
