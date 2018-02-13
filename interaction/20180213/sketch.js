@@ -71,9 +71,6 @@ function assignIntersection(n, d) {
       intersection.push(p);
     }
   }
-
-  a = b;
-  da = db;
 }
 
 function assignStartPoint() {
