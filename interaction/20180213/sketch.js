@@ -107,7 +107,7 @@ function mouseReleased() {
 }
 
 function touchStarted() {
-  assignStart();
+  assignStartPoint();
 }
 
 function touchEnded() {
