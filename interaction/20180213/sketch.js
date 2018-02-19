@@ -53,7 +53,6 @@ function intersect(a, b, da, db) {
 }
 
 function assignIntersection(n, d) {
-  let s = vertices.length;
   let a = vertices[1];
   let da = p5.Vector.dot(n, a) - d;
 
