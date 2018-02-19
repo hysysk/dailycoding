@@ -3,7 +3,7 @@ const EPSILON = 0.0001;
 let startX, startY, endX, endY;
 let isFixed = false;
 let vertices = [];
-let intersection = [];
+let intersections = [];
 
 function setup() {
   frameRate(FRAME_RATE);
@@ -45,13 +45,13 @@ function draw() {
   vertex(vertices[0].x, vertices[0].y);
   endShape();
 
-  let ilen = intersection.length;
+  let ilen = intersections.length;
   if(ilen > 0) {
     noFill();
     stroke(255, 0, 0);
     beginShape();
     for(let i=0; i<ilen; i++) {
-      vertex(intersection[i].x, intersection[i].y);
+      vertex(intersections[i].x, intersections[i].y);
     }
     endShape();
   }
@@ -76,12 +76,12 @@ function assignIntersection(n, d) {
     if(db > EPSILON) {
       if(da < -EPSILON) {
         let p = intersect(b, a, db, da);
-        intersection.push(p);
+        intersections.push(p);
       }
     } else if(db < -EPSILON) {
       if(da > EPSILON) {
         let p = intersect(a, b, da, db);
-        intersection.push(p);
+        intersections.push(p);
       }
     }
     a = b;
@@ -99,7 +99,7 @@ function assignEndPoint() {
   isFixed = true;
   endX = mouseX;
   endY = mouseY;
-  intersection = [];
+  intersections = [];
 
   let start = createVector(startX, startY);
   let end = createVector(endX, endY);
