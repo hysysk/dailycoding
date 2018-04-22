@@ -23,6 +23,8 @@
 [20180106](https://hysysk.github.io/dailycoding/simulation/20180106/)
 #### Oil Color
 [20180119](https://hysysk.github.io/dailycoding/simulation/20180119/)
+#### Spray Painting
+[20180423](https://hysysk.github.io/dailycoding/simulation/20180423/)
 
 ## Form
 #### Dubins Path
