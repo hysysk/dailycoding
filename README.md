@@ -45,6 +45,8 @@
 [20180121](https://hysysk.github.io/dailycoding/form/20180121/)
 #### Clipping
 [20180211](https://hysysk.github.io/dailycoding/form/20180211/)
+#### Group Theory
+[20190131](https://hysysk.github.io/dailycoding/form/20190131/)
 
 ## Interaction
 [20180213](https://hysysk.github.io/dailycoding/interaction/20180213/)
