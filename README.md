@@ -52,6 +52,6 @@
 
 ## Math
 #### Group Theory
-[20190131](https://hysysk.github.io/dailycoding/form/20190131/)
-[20190201](https://hysysk.github.io/dailycoding/form/20190201/)
-[20190202](https://hysysk.github.io/dailycoding/form/20190202/)
+[20190131](https://hysysk.github.io/dailycoding/math/20190131/)
+[20190201](https://hysysk.github.io/dailycoding/math/20190201/)
+[20190202](https://hysysk.github.io/dailycoding/math/20190202/)
