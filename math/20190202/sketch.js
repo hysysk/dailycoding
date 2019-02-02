@@ -40,7 +40,7 @@ function draw() {
           break;
         case 3:
           vertex(i * CELL_SIZE, j * CELL_SIZE);
-          vertex((i+1) * CELL_SIZE, (j) * CELL_SIZE);
+          vertex((i+1) * CELL_SIZE, j * CELL_SIZE);
           vertex(i * CELL_SIZE, (j+1) * CELL_SIZE);
           break;
         case 4:
