@@ -55,3 +55,4 @@
 [20190131](https://hysysk.github.io/dailycoding/math/20190131/)
 [20190201](https://hysysk.github.io/dailycoding/math/20190201/)
 [20190202](https://hysysk.github.io/dailycoding/math/20190202/)
+[20190203](https://hysysk.github.io/dailycoding/math/20190203/)
