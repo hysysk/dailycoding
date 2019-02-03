@@ -1,5 +1,5 @@
 const FRAME_RATE = 30;
-const MODULAR = 5;
+const MODULO = 5;
 const TEXT_SIZE = 24;
 const CANVAS_SIZE = 100;
 const ELEMENTS = [0, 1, 2, 3, 4];
@@ -38,7 +38,7 @@ function drawPattern() {
   for(let i=0; i<ELEMENTS.length; i++) {
     for(let j=0; j<ELEMENTS.length; j++) {
       fill(0);
-      let id = (ELEMENTS[i] + ELEMENTS[j]) % MODULAR;
+      let id = (ELEMENTS[i] + ELEMENTS[j]) % MODULO;
       beginShape();
       switch(id) {
         case 1:
