@@ -1,4 +1,3 @@
-const FRAME_RATE = 30;
 const MODULO = 5;
 const TEXT_SIZE = 24;
 const CANVAS_SIZE = 100;
@@ -7,12 +6,9 @@ const CELL_SIZE = CANVAS_SIZE/ELEMENTS.length;
 let debug = false;
 
 function setup() {
-  frameRate(FRAME_RATE);
   let ctx = createCanvas(CANVAS_SIZE, CANVAS_SIZE);
   background(255);
   noStroke();
-  textSize(TEXT_SIZE);
-  textFont("monospace");
   shuffleArray(ELEMENTS);
   drawPattern();
   let body = ctx.parent();
@@ -62,7 +58,7 @@ function drawPattern() {
           vertex((i+1) * CELL_SIZE, (j+1) * CELL_SIZE);
           break;
         default:
-          console.log("out of GRID_NUMBER", id);
+          console.log("undefined shape id", id);
       }
       endShape(CLOSE);
     }
