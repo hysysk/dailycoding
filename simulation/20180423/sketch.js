@@ -1,8 +1,7 @@
 function setup() {
   createCanvas(500, 500);
-  background(252);
 
-  spray(340, 340, 130, color(22, 98, 230, 50));
+  spray(250, 250, 130, color(22, 98, 230, 50));
 }
 
 function spray(xoff, yoff, r, c) {
