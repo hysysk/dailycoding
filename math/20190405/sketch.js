@@ -1,15 +1,17 @@
-const MODULO = 5;
+const MODULO = 4;
 const TEXT_SIZE = 24;
 const CANVAS_SIZE = 100;
-const ELEMENTS = [1, 2, 3, 4];
-const CELL_SIZE = CANVAS_SIZE/ELEMENTS.length;
+const ROW = [0, 1, 2, 3];
+const COL = [0, 1, 2, 3];
+const CELL_SIZE = CANVAS_SIZE/ROW.length;
 let debug = false;
 
 function setup() {
   let ctx = createCanvas(CANVAS_SIZE, CANVAS_SIZE);
   background(255);
   noStroke();
-  shuffleArray(ELEMENTS);
+  shuffleArray(ROW);
+  shuffleArray(COL);
   drawPattern();
   let body = ctx.parent();
   let img = new Image();
@@ -32,28 +34,28 @@ function shuffleArray(array) {
 
 function drawPattern() {
   background(255);
-  for(let i=0; i<ELEMENTS.length; i++) {
-    for(let j=0; j<ELEMENTS.length; j++) {
+  for(let i=0; i<ROW.length; i++) {
+    for(let j=0; j<COL.length; j++) {
       fill(0);
-      let id = (ELEMENTS[i] * ELEMENTS[j]) % MODULO;
+      let id = (ROW[i] + COL[j]) % MODULO;
       beginShape();
       switch(id) {
-        case 1:
+        case 0:
           vertex(i * CELL_SIZE, j * CELL_SIZE);
           vertex((i+1) * CELL_SIZE, (j+1) * CELL_SIZE);
           vertex(i * CELL_SIZE, (j+1) * CELL_SIZE);
           break;
-        case 2:
+        case 1:
           vertex((i+1) * CELL_SIZE, j * CELL_SIZE);
           vertex((i+1) * CELL_SIZE, (j+1) * CELL_SIZE);
           vertex(i * CELL_SIZE, (j+1) * CELL_SIZE);
           break;
-        case 3:
+        case 2:
           vertex(i * CELL_SIZE, j * CELL_SIZE);
           vertex((i+1) * CELL_SIZE, (j) * CELL_SIZE);
           vertex(i * CELL_SIZE, (j+1) * CELL_SIZE);
           break;
-        case 4:
+        case 3:
           vertex(i * CELL_SIZE, j * CELL_SIZE);
           vertex((i+1) * CELL_SIZE, j * CELL_SIZE);
           vertex((i+1) * CELL_SIZE, (j+1) * CELL_SIZE);

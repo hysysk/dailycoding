@@ -1,15 +1,19 @@
-const MODULO = 5;
+const MODULO = 6;
 const TEXT_SIZE = 24;
 const CANVAS_SIZE = 100;
-const ELEMENTS = [1, 2, 3, 4];
-const CELL_SIZE = CANVAS_SIZE/ELEMENTS.length;
+const ROW = [0, 1, 2, 3, 4, 5];
+const COL = [0, 1, 2, 3, 4, 5];
+const COLOR = ["#DD1E2F", "#EBB035", "#06A2CB",	"#218559", "#D0C6B1", "#192823"];
+const CELL_SIZE = CANVAS_SIZE/ROW.length;
 let debug = false;
 
 function setup() {
   let ctx = createCanvas(CANVAS_SIZE, CANVAS_SIZE);
   background(255);
   noStroke();
-  shuffleArray(ELEMENTS);
+  shuffleArray(ROW);
+  shuffleArray(COL);
+  shuffleArray(COLOR);
   drawPattern();
   let body = ctx.parent();
   let img = new Image();
@@ -32,31 +36,41 @@ function shuffleArray(array) {
 
 function drawPattern() {
   background(255);
-  for(let i=0; i<ELEMENTS.length; i++) {
-    for(let j=0; j<ELEMENTS.length; j++) {
-      fill(0);
-      let id = (ELEMENTS[i] * ELEMENTS[j]) % MODULO;
+  for(let i=0; i<ROW.length; i++) {
+    for(let j=0; j<COL.length; j++) {
+      let id = (ROW[i] + COL[j]) % MODULO;
+      fill(COLOR[id]);
       beginShape();
       switch(id) {
-        case 1:
+        case 0:
           vertex(i * CELL_SIZE, j * CELL_SIZE);
           vertex((i+1) * CELL_SIZE, (j+1) * CELL_SIZE);
           vertex(i * CELL_SIZE, (j+1) * CELL_SIZE);
           break;
-        case 2:
+        case 1:
           vertex((i+1) * CELL_SIZE, j * CELL_SIZE);
           vertex((i+1) * CELL_SIZE, (j+1) * CELL_SIZE);
           vertex(i * CELL_SIZE, (j+1) * CELL_SIZE);
           break;
-        case 3:
+        case 2:
           vertex(i * CELL_SIZE, j * CELL_SIZE);
           vertex((i+1) * CELL_SIZE, (j) * CELL_SIZE);
           vertex(i * CELL_SIZE, (j+1) * CELL_SIZE);
+          break;
+        case 3:
+          vertex(i * CELL_SIZE, j * CELL_SIZE);
+          vertex((i+1) * CELL_SIZE, j * CELL_SIZE);
+          vertex((i+1) * CELL_SIZE, (j+1) * CELL_SIZE);
           break;
         case 4:
           vertex(i * CELL_SIZE, j * CELL_SIZE);
           vertex((i+1) * CELL_SIZE, j * CELL_SIZE);
           vertex((i+1) * CELL_SIZE, (j+1) * CELL_SIZE);
+          vertex(i * CELL_SIZE, (j+1) * CELL_SIZE);
+          break;
+        case 5:
+          ellipseMode(CORNER);
+          ellipse(i * CELL_SIZE, j * CELL_SIZE, CELL_SIZE, CELL_SIZE);
           break;
         default:
           console.log("undefined shape id");

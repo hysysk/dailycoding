@@ -1,7 +1,7 @@
-const MODULO = 5;
+const MODULO = 4;
 const TEXT_SIZE = 24;
 const CANVAS_SIZE = 100;
-const ELEMENTS = [0, 1, 2, 3, 4];
+const ELEMENTS = [0, 1, 2, 3];
 const CELL_SIZE = CANVAS_SIZE/ELEMENTS.length;
 let debug = false;
 
@@ -37,22 +37,22 @@ function drawPattern() {
       let id = (ELEMENTS[i] + ELEMENTS[j]) % MODULO;
       beginShape();
       switch(id) {
-        case 1:
+        case 0:
           vertex(i * CELL_SIZE, j * CELL_SIZE);
+          vertex((i+1) * CELL_SIZE, (j+1) * CELL_SIZE);
+          vertex(i * CELL_SIZE, (j+1) * CELL_SIZE);
+          break;
+        case 1:
+          vertex((i+1) * CELL_SIZE, j * CELL_SIZE);
           vertex((i+1) * CELL_SIZE, (j+1) * CELL_SIZE);
           vertex(i * CELL_SIZE, (j+1) * CELL_SIZE);
           break;
         case 2:
-          vertex((i+1) * CELL_SIZE, j * CELL_SIZE);
-          vertex((i+1) * CELL_SIZE, (j+1) * CELL_SIZE);
-          vertex(i * CELL_SIZE, (j+1) * CELL_SIZE);
-          break;
-        case 3:
           vertex(i * CELL_SIZE, j * CELL_SIZE);
           vertex((i+1) * CELL_SIZE, j * CELL_SIZE);
           vertex(i * CELL_SIZE, (j+1) * CELL_SIZE);
           break;
-        case 4:
+        case 3:
           vertex(i * CELL_SIZE, j * CELL_SIZE);
           vertex((i+1) * CELL_SIZE, j * CELL_SIZE);
           vertex((i+1) * CELL_SIZE, (j+1) * CELL_SIZE);
