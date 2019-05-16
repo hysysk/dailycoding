@@ -1,9 +1,8 @@
 const MODULO = 4;
-const TEXT_SIZE = 24;
 const CANVAS_SIZE = 100;
 const ROW = [0, 1, 2, 3];
 const COL = [0, 1, 2, 3];
-const CELL_SIZE = CANVAS_SIZE/ROW.length;
+const CELL_SIZE = CANVAS_SIZE/MODULO;
 let debug = false;
 
 function setup() {

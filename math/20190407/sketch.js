@@ -1,11 +1,9 @@
 const MODULO = 6;
-const TEXT_SIZE = 24;
 const CANVAS_SIZE = 100;
 const ROW = [0, 1, 2, 3, 4, 5];
 const COL = [0, 1, 2, 3, 4, 5];
 const COLOR = ["#DD1E2F", "#EBB035", "#06A2CB",	"#218559", "#D0C6B1", "#192823"];
-const CELL_SIZE = CANVAS_SIZE/ROW.length;
-let debug = false;
+const CELL_SIZE = CANVAS_SIZE/MODULO;
 
 function setup() {
   let ctx = createCanvas(CANVAS_SIZE, CANVAS_SIZE);

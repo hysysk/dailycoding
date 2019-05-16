@@ -1,9 +1,7 @@
 const MODULO = 4;
-const TEXT_SIZE = 24;
 const CANVAS_SIZE = 100;
 const ELEMENTS = [0, 1, 2, 3];
 const CELL_SIZE = CANVAS_SIZE/ELEMENTS.length;
-let debug = false;
 
 function setup() {
   let ctx = createCanvas(CANVAS_SIZE, CANVAS_SIZE);

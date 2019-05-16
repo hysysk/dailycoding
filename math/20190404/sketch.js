@@ -1,5 +1,4 @@
 const MODULO = 5;
-const TEXT_SIZE = 24;
 const CANVAS_SIZE = 100;
 const ROW = [1, 2, 3, 4];
 const COL = [1, 2, 3, 4];

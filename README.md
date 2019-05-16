@@ -63,3 +63,4 @@
 [20190405](https://hysysk.github.io/dailycoding/math/20190405/)
 [20190406](https://hysysk.github.io/dailycoding/math/20190406/)
 [20190407](https://hysysk.github.io/dailycoding/math/20190407/)
+[20190516](https://hysysk.github.io/dailycoding/math/20190516/)
