@@ -24,13 +24,6 @@ function drawPattern() {
       rotate(angle);
       translate(-CELL_SIZE/2, -CELL_SIZE/2);
       arc(0, 0, CELL_SIZE*2, CELL_SIZE*2, 0, HALF_PI);
-      // rect(0, 0, CELL_SIZE/2, CELL_SIZE/2);
-      // rect(0, 0, CELL_SIZE/2, CELL_SIZE);
-      // beginShape();
-      // vertex(0, 0);
-      // vertex(CELL_SIZE, 0);
-      // vertex(0, CELL_SIZE);
-      // endShape(CLOSE);
       pop();
     }
   }
