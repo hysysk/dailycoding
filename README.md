@@ -71,3 +71,6 @@
 [20190806](https://hysysk.github.io/dailycoding/math/20190806/)
 [20190807](https://hysysk.github.io/dailycoding/math/20190807/)
 [20190808](https://hysysk.github.io/dailycoding/math/20190808/)
+
+#### Fractal
+[20200712](https://hysysk.github.io/dailycoding/math/20200712)
