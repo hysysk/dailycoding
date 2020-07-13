@@ -19,6 +19,10 @@
 [20180203](https://hysysk.github.io/dailycoding/motion/20180203/)
 [20180205](https://hysysk.github.io/dailycoding/motion/20180205/)
 
+## Effect
+#### Transition
+[20200713](https://hysysk.github.io/dailycoding/effect/20200713)
+
 ## Simulation
 #### Watercolor
 [20180106](https://hysysk.github.io/dailycoding/simulation/20180106/)
