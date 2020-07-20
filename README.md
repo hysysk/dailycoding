@@ -36,9 +36,6 @@
 [20180107](https://hysysk.github.io/dailycoding/form/20180107/)
 [20180108](https://hysysk.github.io/dailycoding/form/20180108/)
 [20180110](https://hysysk.github.io/dailycoding/form/20180110/)
-#### Graphic Design Manual
-[20180109](https://hysysk.github.io/dailycoding/form/20180109/)
-[20180112](https://hysysk.github.io/dailycoding/form/20180112/)
 #### Circles
 [20180114](https://hysysk.github.io/dailycoding/form/20180114/)
 [20180115](https://hysysk.github.io/dailycoding/form/20180115/)
@@ -53,6 +50,12 @@
 #### Drawing
 [20200414](https://hysysk.github.io/dailycoding/form/20200414/)
 [20200415](https://hysysk.github.io/dailycoding/form/20200415/)
+#### Graphic Design Manual
+The dot
+
+[20180109](https://hysysk.github.io/dailycoding/form/20180109/)
+[20180112](https://hysysk.github.io/dailycoding/form/20180112/)
+[20200720](https://hysysk.github.io/dailycoding/form/20200720/)
 
 ## Interaction
 #### Intersection
