@@ -41,7 +41,7 @@ class Number5 extends Base {
 class Number6 extends Base {
   draw() {
     super.draw();
-    let grid = 20;
+    let grid = 19;
     let margin = width / (grid+1);
     for(let i=0; i<grid; i++) {
       for(let j=0; j<grid; j++) {

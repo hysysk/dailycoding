@@ -60,6 +60,7 @@ The dot
 [20200722](https://hysysk.github.io/dailycoding/form/20200722/)
 [20200723](https://hysysk.github.io/dailycoding/form/20200723/)
 [20200724](https://hysysk.github.io/dailycoding/form/20200724/)
+[20200725](https://hysysk.github.io/dailycoding/form/20200725/)
 
 ## Interaction
 #### Intersection
