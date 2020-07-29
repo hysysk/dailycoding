@@ -24,5 +24,4 @@ function setup() {
   rect(51 * gridSize, 50 * gridSize, gridSize, gridSize);
   rect(50 * gridSize, 49 * gridSize, gridSize, gridSize);
   rect(50 * gridSize, 51 * gridSize, gridSize, gridSize);
-
 }
