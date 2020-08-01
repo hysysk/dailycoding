@@ -2,12 +2,12 @@ let graphics = [];
 let graphicIndex = 0;
 
 function setup() {
-  createCanvas(510, 510);
+  createCanvas(495, 495);
 
   noStroke();
   fill(0);
 
-  let gridNumber = 51;
+  let gridNumber = 45;
   let gridSize = width / gridNumber;
 
   for(let j=0; j<gridNumber; j++) {
@@ -24,18 +24,18 @@ function setup() {
   rect(9 * gridSize, 8 * gridSize, gridSize, gridSize);
   rect(11 * gridSize, 8 * gridSize, gridSize, gridSize);
 
-  rect(37 * gridSize, 14 * gridSize, gridSize, gridSize);
-  rect(39 * gridSize, 12 * gridSize, gridSize, gridSize);
-  rect(41 * gridSize, 14 * gridSize, gridSize, gridSize);
-  rect(43 * gridSize, 12 * gridSize, gridSize, gridSize);
+  rect(31 * gridSize, 14 * gridSize, gridSize, gridSize);
+  rect(33 * gridSize, 12 * gridSize, gridSize, gridSize);
+  rect(35 * gridSize, 14 * gridSize, gridSize, gridSize);
+  rect(37 * gridSize, 12 * gridSize, gridSize, gridSize);
 
-  rect(30 * gridSize, 33 * gridSize, gridSize, gridSize);
-  rect(30 * gridSize, 35 * gridSize, gridSize, gridSize);
-  rect(34 * gridSize, 35 * gridSize, gridSize, gridSize);
-  rect(34 * gridSize, 37 * gridSize, gridSize, gridSize);
+  rect(24 * gridSize, 27 * gridSize, gridSize, gridSize);
+  rect(24 * gridSize, 29 * gridSize, gridSize, gridSize);
+  rect(28 * gridSize, 29 * gridSize, gridSize, gridSize);
+  rect(28 * gridSize, 31 * gridSize, gridSize, gridSize);
 
-  rect(10 * gridSize, 39 * gridSize, gridSize, gridSize);
-  rect(8 * gridSize, 41 * gridSize, gridSize, gridSize);
-  rect(12 * gridSize, 41 * gridSize, gridSize, gridSize);
-  rect(10 * gridSize, 43 * gridSize, gridSize, gridSize);
+  rect(10 * gridSize, 33 * gridSize, gridSize, gridSize);
+  rect(8 * gridSize, 35 * gridSize, gridSize, gridSize);
+  rect(12 * gridSize, 35 * gridSize, gridSize, gridSize);
+  rect(10 * gridSize, 37 * gridSize, gridSize, gridSize);
 }
