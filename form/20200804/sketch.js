@@ -1,7 +1,7 @@
 function setup() {
   createCanvas(501, 501);
   
-  const VERTICAL_LINE_NUMBER = 51;
+  const VERTICAL_LINE_NUMBER = 52;
   const MARGIN = width / (VERTICAL_LINE_NUMBER - 1);
 
   translate(0.5, 0);
