@@ -101,6 +101,7 @@ The dot
 
 #### 40 Grafische Programma's Voor De ZX Spectrum
 [20210918](https://hysysk.github.io/dailycoding/form/20210918/)
+[20210919](https://hysysk.github.io/dailycoding/form/20210919/)
 
 ## Interaction
 
