@@ -99,6 +99,9 @@ The dot
 [20200804](https://hysysk.github.io/dailycoding/form/20200804/)
 [20200820](https://hysysk.github.io/dailycoding/form/20200820/)
 
+#### 40 Grafische Programma's Voor De ZX Spectrum
+[20210918](https://hysysk.github.io/dailycoding/form/20210918/)
+
 ## Interaction
 
 #### Intersection
