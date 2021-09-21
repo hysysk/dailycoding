@@ -1,5 +1,6 @@
 function setup() {
   createCanvas(500, 500);
+  background(255);
 
   for (let i = 0; i < width + 1; i += 20) {
     line(0, 0, i, height);

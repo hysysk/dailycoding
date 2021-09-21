@@ -1,5 +1,6 @@
 function setup() {
   createCanvas(500, 500);
+  background(255);
   noFill();
 
   let x = new Array(7);

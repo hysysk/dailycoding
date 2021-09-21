@@ -1,5 +1,6 @@
 function setup() {
   createCanvas(500, 500);
+  background(255);
 
   let y1 = 0, y2 = height;
   for (let a = 1; a < width; a += 62) {
