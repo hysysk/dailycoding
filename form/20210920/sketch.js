@@ -5,7 +5,8 @@ function setup() {
 
   let a = [6, 20, 12];
   let b = [12, 9, -6];
-  let x0 = 0, y0 = 170;
+  let x0 = 0;
+  let y0 = 170;
   let x = new Array(3);
   let y = new Array(3);
   for (let k = 0; k < 9; k += 0.4) {

@@ -7,8 +7,10 @@ function setup() {
   let y = new Array(7);
   let a = new Array(7);
   let b = new Array(7);
-  let u = 250, v = 250;
-  let r = 250, h = 0.5;
+  let u = 250;
+  let v = 250;
+  let r = 250;
+  let h = 0.5;
   let w = 60 * PI / 180;
   for (let j = 0; j < 7; j++) {
     let w1 = j * w;

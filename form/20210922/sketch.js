@@ -8,7 +8,8 @@ function setup() {
   let n = 12;
   let x = new Array(n);
   let y = new Array(n);
-  let u = 250, v = 250;
+  let u = 250;
+  let v = 250;
   let h = 0.5;
   let w = (360 / n) * PI / 180;
   for (let j = 0; j < n; j++) {
