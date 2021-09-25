@@ -106,6 +106,7 @@ The dot
 [20210921](https://hysysk.github.io/dailycoding/form/20210921/)
 [20210922](https://hysysk.github.io/dailycoding/form/20210922/)
 [20210923](https://hysysk.github.io/dailycoding/form/20210923/)
+[20210925](https://hysysk.github.io/dailycoding/form/20210925/)
 
 ## Interaction
 
