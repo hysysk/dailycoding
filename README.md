@@ -79,38 +79,6 @@
 [20200414](https://hysysk.github.io/dailycoding/form/20200414/)
 [20200415](https://hysysk.github.io/dailycoding/form/20200415/)
 
-#### Graphic Design Manual
-
-The dot
-
-[20180109](https://hysysk.github.io/dailycoding/form/20180109/)
-[20180112](https://hysysk.github.io/dailycoding/form/20180112/)
-[20200720](https://hysysk.github.io/dailycoding/form/20200720/)
-[20200721](https://hysysk.github.io/dailycoding/form/20200721/)
-[20200722](https://hysysk.github.io/dailycoding/form/20200722/)
-[20200723](https://hysysk.github.io/dailycoding/form/20200723/)
-[20200724](https://hysysk.github.io/dailycoding/form/20200724/)
-[20200725](https://hysysk.github.io/dailycoding/form/20200725/)
-[20200726](https://hysysk.github.io/dailycoding/form/20200726/)
-[20200728](https://hysysk.github.io/dailycoding/form/20200728/)
-[20200729](https://hysysk.github.io/dailycoding/form/20200729/)
-[20200731](https://hysysk.github.io/dailycoding/form/20200731/)
-[20200801](https://hysysk.github.io/dailycoding/form/20200801/)
-[20200804](https://hysysk.github.io/dailycoding/form/20200804/)
-[20200820](https://hysysk.github.io/dailycoding/form/20200820/)
-
-#### 40 Grafische Programma's Voor De ZX Spectrum
-[20210918](https://hysysk.github.io/dailycoding/form/20210918/)
-[20210919](https://hysysk.github.io/dailycoding/form/20210919/)
-[20210920](https://hysysk.github.io/dailycoding/form/20210920/)
-[20210921](https://hysysk.github.io/dailycoding/form/20210921/)
-[20210922](https://hysysk.github.io/dailycoding/form/20210922/)
-[20210923](https://hysysk.github.io/dailycoding/form/20210923/)
-[20210925](https://hysysk.github.io/dailycoding/form/20210925/)
-[20210926](https://hysysk.github.io/dailycoding/form/20210926/)
-[20210927](https://hysysk.github.io/dailycoding/form/20210927/)
-[20210929](https://hysysk.github.io/dailycoding/form/20210929/)
-
 ## Interaction
 
 #### Intersection
@@ -140,3 +108,39 @@ The dot
 #### Fractal
 
 [20200712](https://hysysk.github.io/dailycoding/math/20200712)
+
+## Recode
+
+#### Graphic Design Manual
+
+[20180109](https://hysysk.github.io/dailycoding/recode/20180109/)
+[20180112](https://hysysk.github.io/dailycoding/recode/20180112/)
+[20200720](https://hysysk.github.io/dailycoding/recode/20200720/)
+[20200721](https://hysysk.github.io/dailycoding/recode/20200721/)
+[20200722](https://hysysk.github.io/dailycoding/recode/20200722/)
+[20200723](https://hysysk.github.io/dailycoding/recode/20200723/)
+[20200724](https://hysysk.github.io/dailycoding/recode/20200724/)
+[20200725](https://hysysk.github.io/dailycoding/recode/20200725/)
+[20200726](https://hysysk.github.io/dailycoding/recode/20200726/)
+[20200728](https://hysysk.github.io/dailycoding/recode/20200728/)
+[20200729](https://hysysk.github.io/dailycoding/recode/20200729/)
+[20200731](https://hysysk.github.io/dailycoding/recode/20200731/)
+[20200801](https://hysysk.github.io/dailycoding/recode/20200801/)
+[20200804](https://hysysk.github.io/dailycoding/recode/20200804/)
+[20200820](https://hysysk.github.io/dailycoding/recode/20200820/)
+
+#### 40 Grafische Programma's Voor De ZX Spectrum
+
+[20210918](https://hysysk.github.io/dailycoding/recode/20210918/)
+[20210919](https://hysysk.github.io/dailycoding/recode/20210919/)
+[20210920](https://hysysk.github.io/dailycoding/recode/20210920/)
+[20210921](https://hysysk.github.io/dailycoding/recode/20210921/)
+[20210922](https://hysysk.github.io/dailycoding/recode/20210922/)
+[20210923](https://hysysk.github.io/dailycoding/recode/20210923/)
+[20210925](https://hysysk.github.io/dailycoding/recode/20210925/)
+[20210926](https://hysysk.github.io/dailycoding/recode/20210926/)
+[20210927](https://hysysk.github.io/dailycoding/recode/20210927/)
+[20210929](https://hysysk.github.io/dailycoding/recode/20210929/)
+
+#### Computer Art and Graphics
+[20211020](https://hysysk.github.io/dailycoding/recode/20211020/)
