@@ -144,3 +144,4 @@
 
 #### Computer Art and Graphics
 [20211020](https://hysysk.github.io/dailycoding/recode/20211020/)
+[20211021](https://hysysk.github.io/dailycoding/recode/20211021/)
