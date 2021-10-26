@@ -145,3 +145,6 @@
 #### Computer Art and Graphics
 [20211020](https://hysysk.github.io/dailycoding/recode/20211020/)
 [20211021](https://hysysk.github.io/dailycoding/recode/20211021/)
+
+#### A programmer's geometry
+[20211026](https://hysysk.github.io/dailycoding/recode/20211026/)
