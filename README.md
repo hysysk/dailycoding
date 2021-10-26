@@ -2,14 +2,14 @@
 
 ## Motion
 
-#### Easing
+### Easing
 
 [20171230](https://hysysk.github.io/dailycoding/motion/20171230/)
 [20171231](https://hysysk.github.io/dailycoding/motion/20171231/)
 [20180104](https://hysysk.github.io/dailycoding/motion/20180104/)
 [20180105](https://hysysk.github.io/dailycoding/motion/20180105/)
 
-#### Euler Integration
+### Euler Integration
 
 [20180122](https://hysysk.github.io/dailycoding/motion/20180122/)
 [20180125](https://hysysk.github.io/dailycoding/motion/20180125/)
@@ -20,44 +20,44 @@
 [20180201](https://hysysk.github.io/dailycoding/motion/20180201/)
 [20180202](https://hysysk.github.io/dailycoding/motion/20180202/)
 
-#### Verlet Integration
+### Verlet Integration
 
 [20180203](https://hysysk.github.io/dailycoding/motion/20180203/)
 [20180205](https://hysysk.github.io/dailycoding/motion/20180205/)
 
-#### Perlin Noise
+### Perlin Noise
 
 [20201215](https://hysysk.github.io/dailycoding/motion/20201215/)
 
 ## Effect
 
-#### Transition
+### Transition
 
 [20200713](https://hysysk.github.io/dailycoding/effect/20200713)
 
 ## Simulation
 
-#### Watercolor
+### Watercolor
 
 [20180106](https://hysysk.github.io/dailycoding/simulation/20180106/)
 
-#### Oil Color
+### Oil Color
 
 [20180119](https://hysysk.github.io/dailycoding/simulation/20180119/)
 
-#### Spray Painting
+### Spray Painting
 
 [20180423](https://hysysk.github.io/dailycoding/simulation/20180423/)
 
 ## Form
 
-#### Dubins Path
+### Dubins Path
 
 [20180107](https://hysysk.github.io/dailycoding/form/20180107/)
 [20180108](https://hysysk.github.io/dailycoding/form/20180108/)
 [20180110](https://hysysk.github.io/dailycoding/form/20180110/)
 
-#### Circles
+### Circles
 
 [20180114](https://hysysk.github.io/dailycoding/form/20180114/)
 [20180115](https://hysysk.github.io/dailycoding/form/20180115/)
@@ -65,30 +65,30 @@
 [20180117](https://hysysk.github.io/dailycoding/form/20180117/)
 [20180128](https://hysysk.github.io/dailycoding/form/20180128/)
 
-#### Phyllotactic Spiral
+### Phyllotactic Spiral
 
 [20180120](https://hysysk.github.io/dailycoding/form/20180120/)
 [20180121](https://hysysk.github.io/dailycoding/form/20180121/)
 
-#### Clipping
+### Clipping
 
 [20180211](https://hysysk.github.io/dailycoding/form/20180211/)
 
-#### Drawing
+### Drawing
 
 [20200414](https://hysysk.github.io/dailycoding/form/20200414/)
 [20200415](https://hysysk.github.io/dailycoding/form/20200415/)
 
 ## Interaction
 
-#### Intersection
+### Intersection
 
 [20180213](https://hysysk.github.io/dailycoding/interaction/20180213/)
 [20180219](https://hysysk.github.io/dailycoding/interaction/20180219/)
 
 ## Math
 
-#### Group Theory
+### Group Theory
 
 [20190131](https://hysysk.github.io/dailycoding/math/20190131/)
 [20190201](https://hysysk.github.io/dailycoding/math/20190201/)
@@ -105,13 +105,13 @@
 [20190807](https://hysysk.github.io/dailycoding/math/20190807/)
 [20190808](https://hysysk.github.io/dailycoding/math/20190808/)
 
-#### Fractal
+### Fractal
 
 [20200712](https://hysysk.github.io/dailycoding/math/20200712)
 
 ## Recode
 
-#### Graphic Design Manual
+### Graphic Design Manual
 
 [20180109](https://hysysk.github.io/dailycoding/recode/20180109/)
 [20180112](https://hysysk.github.io/dailycoding/recode/20180112/)
@@ -129,7 +129,7 @@
 [20200804](https://hysysk.github.io/dailycoding/recode/20200804/)
 [20200820](https://hysysk.github.io/dailycoding/recode/20200820/)
 
-#### 40 Grafische Programma's Voor De ZX Spectrum
+### 40 Grafische Programma's Voor De ZX Spectrum
 
 [20210918](https://hysysk.github.io/dailycoding/recode/20210918/)
 [20210919](https://hysysk.github.io/dailycoding/recode/20210919/)
@@ -142,9 +142,10 @@
 [20210927](https://hysysk.github.io/dailycoding/recode/20210927/)
 [20210929](https://hysysk.github.io/dailycoding/recode/20210929/)
 
-#### Computer Art and Graphics
+### Computer Art and Graphics
 [20211020](https://hysysk.github.io/dailycoding/recode/20211020/)
 [20211021](https://hysysk.github.io/dailycoding/recode/20211021/)
 
-#### A programmer's geometry
+### A programmer's geometry
+Distance between Two Points
 [20211026](https://hysysk.github.io/dailycoding/recode/20211026/)
