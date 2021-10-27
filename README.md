@@ -149,3 +149,5 @@
 ### A programmer's geometry
 Distance between Two Points
 [20211026](https://hysysk.github.io/dailycoding/recode/20211026/)
+Distance from a Point to a Line
+[20211027](https://hysysk.github.io/dailycoding/recode/20211027/)
