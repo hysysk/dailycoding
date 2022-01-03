@@ -35,6 +35,9 @@
 
 [20200713](https://hysysk.github.io/dailycoding/effect/20200713)
 
+### Ambient
+[20220103](https://hysysk.github.io/dailycoding/effect/20220103)
+
 ## Simulation
 
 ### Watercolor
