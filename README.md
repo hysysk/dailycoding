@@ -35,10 +35,6 @@
 
 [20200713](https://hysysk.github.io/dailycoding/effect/20200713)
 
-### Ambient
-[20220103](https://hysysk.github.io/dailycoding/effect/20220103)
-[20220104](https://hysysk.github.io/dailycoding/effect/20220104)
-
 ## Simulation
 
 ### Watercolor
@@ -158,3 +154,8 @@ Distance between Two Points
 [20211026](https://hysysk.github.io/dailycoding/book/20211026/)<br>
 Distance from a Point to a Line
 [20211027](https://hysysk.github.io/dailycoding/book/20211027/)
+
+### Book of Shader
+[20220103](https://hysysk.github.io/dailycoding/effect/20220103)
+[20220104](https://hysysk.github.io/dailycoding/effect/20220104)
+[20220105](https://hysysk.github.io/dailycoding/effect/20220105)
