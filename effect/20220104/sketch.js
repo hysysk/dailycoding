@@ -3,21 +3,23 @@ const gl = canvas.getContext('webgl2');
 canvas.width = canvas.clientWidth;
 canvas.height = canvas.clientHeight;
 
-const vs = `
-attribute vec4 a_position;
+const vs = `#version 300 es
+in vec4 a_position;
 
 void main() {
   gl_Position = a_position;
 }
 `;
 
-const fs = `
+const fs = `#version 300 es
 precision highp float;
 uniform vec2 u_resolution;
 uniform float u_time;
+out vec4 FragColor;
+
 void main() {
   vec2 uv = gl_FragCoord.xy / u_resolution;
-  gl_FragColor = vec4(uv, abs(sin(u_time * 0.0001)), 1);
+  FragColor = vec4(uv, abs(sin(u_time * 0.0001)), 1);
 }
 `;
 

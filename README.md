@@ -37,6 +37,7 @@
 
 ### Ambient
 [20220103](https://hysysk.github.io/dailycoding/effect/20220103)
+[20220104](https://hysysk.github.io/dailycoding/effect/20220104)
 
 ## Simulation
 
