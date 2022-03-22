@@ -3,14 +3,12 @@
 ## Motion
 
 ### Easing
-
 [20171230](https://hysysk.github.io/dailycoding/motion/20171230/)
 [20171231](https://hysysk.github.io/dailycoding/motion/20171231/)
 [20180104](https://hysysk.github.io/dailycoding/motion/20180104/)
 [20180105](https://hysysk.github.io/dailycoding/motion/20180105/)
 
 ### Euler Integration
-
 [20180122](https://hysysk.github.io/dailycoding/motion/20180122/)
 [20180125](https://hysysk.github.io/dailycoding/motion/20180125/)
 [20180126](https://hysysk.github.io/dailycoding/motion/20180126/)
@@ -21,44 +19,36 @@
 [20180202](https://hysysk.github.io/dailycoding/motion/20180202/)
 
 ### Verlet Integration
-
 [20180203](https://hysysk.github.io/dailycoding/motion/20180203/)
 [20180205](https://hysysk.github.io/dailycoding/motion/20180205/)
 
 ### Perlin Noise
-
 [20201215](https://hysysk.github.io/dailycoding/motion/20201215/)
 
 ## Effect
 
 ### Transition
-
 [20200713](https://hysysk.github.io/dailycoding/effect/20200713)
 
 ## Simulation
 
 ### Watercolor
-
 [20180106](https://hysysk.github.io/dailycoding/simulation/20180106/)
 
 ### Oil Color
-
 [20180119](https://hysysk.github.io/dailycoding/simulation/20180119/)
 
 ### Spray Painting
-
 [20180423](https://hysysk.github.io/dailycoding/simulation/20180423/)
 
 ## Form
 
 ### Dubins Path
-
 [20180107](https://hysysk.github.io/dailycoding/form/20180107/)
 [20180108](https://hysysk.github.io/dailycoding/form/20180108/)
 [20180110](https://hysysk.github.io/dailycoding/form/20180110/)
 
 ### Circles
-
 [20180114](https://hysysk.github.io/dailycoding/form/20180114/)
 [20180115](https://hysysk.github.io/dailycoding/form/20180115/)
 [20180116](https://hysysk.github.io/dailycoding/form/20180116/)
@@ -66,30 +56,25 @@
 [20180128](https://hysysk.github.io/dailycoding/form/20180128/)
 
 ### Phyllotactic Spiral
-
 [20180120](https://hysysk.github.io/dailycoding/form/20180120/)
 [20180121](https://hysysk.github.io/dailycoding/form/20180121/)
 
 ### Clipping
-
 [20180211](https://hysysk.github.io/dailycoding/form/20180211/)
 
 ### Drawing
-
 [20200414](https://hysysk.github.io/dailycoding/form/20200414/)
 [20200415](https://hysysk.github.io/dailycoding/form/20200415/)
 
 ## Interaction
 
 ### Intersection
-
 [20180213](https://hysysk.github.io/dailycoding/interaction/20180213/)
 [20180219](https://hysysk.github.io/dailycoding/interaction/20180219/)
 
 ## Math
 
 ### Group Theory
-
 [20190131](https://hysysk.github.io/dailycoding/math/20190131/)
 [20190201](https://hysysk.github.io/dailycoding/math/20190201/)
 [20190202](https://hysysk.github.io/dailycoding/math/20190202/)
@@ -109,13 +94,11 @@
 [20211219](https://hysysk.github.io/dailycoding/math/20211219/)
 
 ### Fractal
-
 [20200712](https://hysysk.github.io/dailycoding/math/20200712)
 
 ## Book
 
 ### Graphic Design Manual
-
 [20180109](https://hysysk.github.io/dailycoding/book/20180109/)
 [20180112](https://hysysk.github.io/dailycoding/book/20180112/)
 [20200720](https://hysysk.github.io/dailycoding/book/20200720/)
@@ -133,7 +116,6 @@
 [20200820](https://hysysk.github.io/dailycoding/book/20200820/)
 
 ### 40 Grafische Programma's Voor De ZX Spectrum
-
 [20210918](https://hysysk.github.io/dailycoding/book/20210918/)
 [20210919](https://hysysk.github.io/dailycoding/book/20210919/)
 [20210920](https://hysysk.github.io/dailycoding/book/20210920/)
@@ -154,6 +136,10 @@ Distance between Two Points
 [20211026](https://hysysk.github.io/dailycoding/book/20211026/)<br>
 Distance from a Point to a Line
 [20211027](https://hysysk.github.io/dailycoding/book/20211027/)
+
+### Computational Geometry: Algorithms and Applications
+Slow Convex Hull
+[20220322](https://hysysk.github.io/dailycoding/book/20220322/)
 
 ### Book of Shader
 [20220103](https://hysysk.github.io/dailycoding/effect/20220103)
