@@ -140,6 +140,7 @@ Distance from a Point to a Line
 ### Computational Geometry: Algorithms and Applications
 Slow Convex Hull
 [20220322](https://hysysk.github.io/dailycoding/book/20220322/)
+[20220328](https://hysysk.github.io/dailycoding/book/20220328/)
 
 ### Book of Shader
 [20220103](https://hysysk.github.io/dailycoding/effect/20220103)
