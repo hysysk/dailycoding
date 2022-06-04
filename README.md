@@ -143,6 +143,7 @@ Slow Convex Hull
 [20220328](https://hysysk.github.io/dailycoding/book/20220328/)
 
 ### Book of Shader
-[20220103](https://hysysk.github.io/dailycoding/effect/20220103)
-[20220104](https://hysysk.github.io/dailycoding/effect/20220104)
-[20220105](https://hysysk.github.io/dailycoding/effect/20220105)
+[20220103](https://hysysk.github.io/dailycoding/book/20220103)
+[20220104](https://hysysk.github.io/dailycoding/book/20220104)
+[20220105](https://hysysk.github.io/dailycoding/book/20220105)
+[20220604](https://hysysk.github.io/dailycoding/book/20220604)
