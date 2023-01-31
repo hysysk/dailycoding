@@ -1,14 +1,16 @@
 const play = document.getElementById("play");
 const freq = document.getElementById("freq");
-let osc;
+let audioCtx, osc;
 
 play.addEventListener("click", () => {
   // The AudioContext must be resumed (or created)
   // after a user gesture on the page
-  if (!osc) {
+  if (!audioCtx) {
     audioCtx = new AudioContext();
-    osc = createOsc(audioCtx);
-    osc.connect(audioCtx.destination);
+  }
+
+  if (!osc) {
+    osc = createOsc();
     osc.start();
   } else {
     osc.stop();
@@ -17,15 +19,16 @@ play.addEventListener("click", () => {
 });
 
 setInterval(() => {
-  if(osc) {
+  if (osc) {
     osc.frequency.value = freq.value;
   }
 }, 30);
 
 // When an oscillator is stopped, it can't be restarted.
 // It must be recreated and then started.
-const createOsc = audioCtx => {
-  const osc = audioCtx.createOscillator();
-  osc.type = 'sine';
-  return osc;
+const createOsc = () => {
+  const tmpOsc = audioCtx.createOscillator();
+  tmpOsc.type = 'sine';
+  tmpOsc.connect(audioCtx.destination);
+  return tmpOsc;
 };

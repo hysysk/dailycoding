@@ -69,6 +69,7 @@
 ## Sound
 [20230129](https://hysysk.github.io/dailycoding/sound/20230129)
 [20230130](https://hysysk.github.io/dailycoding/sound/20230130)
+[20230131](https://hysysk.github.io/dailycoding/sound/20230131)
 
 ## Interaction
 
