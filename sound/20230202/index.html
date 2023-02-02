@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>20230131</title>
+    <title>20230202</title>
     <style>
       html,
       body {
@@ -35,12 +35,17 @@
       #play {
         margin: 0 auto 2rem;
       }
+
+      #freq-slider {
+        width: 100%;
+      }
     </style>
   </head>
 
   <body>
     <div class="ui">
       <button type="button" id="play">Play</button>
+      <input type="range" id="freq-slider" value="440" min="80" max="1200" />
     </div>
     <script src="sketch.js"></script>
   </body>
