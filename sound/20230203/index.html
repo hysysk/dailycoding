@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>20230203</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+      }
+
+      .ui {
+        width: 240px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      button {
+        display: inline-block;
+        width: 100px;
+        height: 32px;
+      }
+
+      #play {
+        margin: 0 auto 2rem;
+      }
+
+      #freq-slider {
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="ui">
+      <button type="button" id="play">Play</button>
+      <input type="range" id="freq-slider" value="440" min="80" max="1200" />
+    </div>
+    <script src="sketch.js"></script>
+  </body>
+</html>
