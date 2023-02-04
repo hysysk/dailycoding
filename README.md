@@ -69,19 +69,15 @@
 ## Sound
 
 ### Oscillator
-[20230129](https://hysysk.github.io/dailycoding/sound/20230129)
-
+Osc
+[20230129](https://hysysk.github.io/dailycoding/sound/20230129)<br>
 Osc + Slider
 [20230130](https://hysysk.github.io/dailycoding/sound/20230130)
 
 ### Sequence
-[20230131](https://hysysk.github.io/dailycoding/sound/20230131)
-
-Osc -> Filter
-[20230202](https://hysysk.github.io/dailycoding/sound/20230202)
-
-Osc -> VCA -> Filter
-[20230203](https://hysysk.github.io/dailycoding/sound/20230203)
+Osc [20230131](https://hysysk.github.io/dailycoding/sound/20230131)<br>
+Osc -> Filter [20230202](https://hysysk.github.io/dailycoding/sound/20230202)<br>
+Osc -> VCA -> Filter [20230203](https://hysysk.github.io/dailycoding/sound/20230203)
 
 ## Interaction
 
