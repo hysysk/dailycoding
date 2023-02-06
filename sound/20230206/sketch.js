@@ -1,8 +1,11 @@
 const playButton = document.getElementById("play");
 const freqSlider = document.getElementById("freq-slider");
+const delaySlider = document.getElementById("delay-slider");
 let audioCtx;
 let filter;
 let vca;
+let delay;
+let delayAmount;
 
 playButton.addEventListener("click", () => {
   // The AudioContext must be resumed (or created)
@@ -28,18 +31,28 @@ setInterval(() => {
   if (filter) {
     filter.frequency.value = freqSlider.value;
   }
+  if (delay) {
+    delay.delayTime.value = delaySlider.value;
+  }
 }, 30);
 
-const play = (delay, pitch, duration) => {
+const play = (delayTime, pitch, duration) => {
   const osc = createOsc(pitch);
-  const startTime = audioCtx.currentTime + delay;
+  const startTime = audioCtx.currentTime + delayTime;
   const endTime = startTime + duration;
+
   createVCA(startTime, endTime);
   createFilter();
+  createDelay();
 
   osc.connect(vca);
   vca.connect(filter);
   filter.connect(audioCtx.destination);
+
+  filter.connect(delay);
+  delay.connect(delayAmount);
+  delayAmount.connect(audioCtx.destination);
+
   osc.start(startTime);
   osc.stop(endTime);
 }
@@ -64,4 +77,14 @@ const createVCA = (startTime, endTime) => {
   }
   vca.gain.exponentialRampToValueAtTime(1, startTime);
   vca.gain.exponentialRampToValueAtTime(0.0001, endTime - 0.01);
+}
+
+const createDelay = () => {
+  if (!delay) {
+    delay = audioCtx.createDelay();
+  }
+  if (!delayAmount) {
+    delayAmount = audioCtx.createGain();
+    delayAmount.gain.value = 0.5;
+  }
 }

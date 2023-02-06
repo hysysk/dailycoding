@@ -16,7 +16,7 @@ playButton.addEventListener("click", () => {
   play(1.2, 783.99, 0.3);
   play(1.5, 880.00, 0.3);
   play(1.8, 987.77, 0.3);
-  play(2.1, 1046.50	, 0.3);
+  play(2.1, 1046.50, 0.3);
   playButton.disabled = true;
   setTimeout(() => {
     playButton.disabled = false;
@@ -31,9 +31,10 @@ setInterval(() => {
 
 const play = (delay, pitch, duration) => {
   const osc = createOsc(pitch);
-  filter = createFilter();
   const startTime = audioCtx.currentTime + delay;
   const endTime = startTime + duration;
+  
+  createFilter();
   osc.connect(filter);
   filter.connect(audioCtx.destination);
   osc.start(startTime, duration);
@@ -52,5 +53,4 @@ const createFilter = () => {
     filter = audioCtx.createBiquadFilter();
     filter.type = "lowpass";
   }
-  return filter;
 };
