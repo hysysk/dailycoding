@@ -77,7 +77,7 @@ Osc + Slider
 ### Sequence
 Osc [20230131](https://hysysk.github.io/dailycoding/sound/20230131)<br>
 Osc -> Filter [20230202](https://hysysk.github.io/dailycoding/sound/20230202)<br>
-Osc -> VCA -> Filter [20230203](https://hysysk.github.io/dailycoding/sound/20230203)
+Osc -> VCA -> Filter [20230203](https://hysysk.github.io/dailycoding/sound/20230203)<br>
 Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/sound/20230206)
 
 ## Interaction
