@@ -78,7 +78,8 @@ Osc + Slider
 Osc [20230131](https://hysysk.github.io/dailycoding/sound/20230131)<br>
 Osc -> Filter [20230202](https://hysysk.github.io/dailycoding/sound/20230202)<br>
 Osc -> VCA -> Filter [20230203](https://hysysk.github.io/dailycoding/sound/20230203)<br>
-Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/sound/20230206)
+Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/sound/20230206)<br>
+Step sequencer [20230207]
 
 ## Interaction
 
@@ -109,6 +110,11 @@ Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/so
 
 ### Fractal
 [20200712](https://hysysk.github.io/dailycoding/math/20200712)
+
+## Utility
+
+### Browser
+Maintain Canvas Aspect Ratio [20230417](https://hysysk.github.io/dailycoding/utility/20230417)
 
 ## Book
 
