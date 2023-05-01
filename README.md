@@ -41,6 +41,9 @@
 ### Spray Painting
 [20180423](https://hysysk.github.io/dailycoding/simulation/20180423/)
 
+### Genetic Algorithm
+[20230501](https://hysysk.github.io/dailycoding/simulation/20230501/)
+
 ## Form
 
 ### Dubins Path
