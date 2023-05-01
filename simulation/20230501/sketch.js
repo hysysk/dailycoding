@@ -2,7 +2,6 @@ const GENE_NUMBER = 10;
 const QUESTION_NUMBER = 10;
 let genes = [];
 let correctAnswers = [];
-let count = 0;
 
 function start() {
   for (let i = 0; i < QUESTION_NUMBER; i++) {
@@ -23,6 +22,7 @@ function start() {
   checkAnswers(genes);
   sortAnswersByPoints();
 
+  let count = 0;
   let id = setInterval(() => {
     crossOver();
     count++;
