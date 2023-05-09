@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>20230509</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        font-family: monospace;
+        display: grid;
+        place-content: center;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      th {
+        text-align: right;
+        border: 1px solid #000;
+        padding: 0.5rem;
+      }
+      td {
+        border: 1px solid #000;
+        text-align: center;
+      }
+      canvas {
+        display: block;
+      }
+      #correct {
+        width: 320px;
+        height: 320px;
+      }
+      #answer {
+        width: 320px;
+        height: 320px;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>Generations</th>
+        <td id="generations"></td>
+      </tr>
+      <tr>
+        <th>Target</th>
+        <td>
+          <canvas id="correct" width="320" height="320"></canvas>
+        </td>
+      </tr>
+      <tr>
+        <th>GA</th>
+        <td>
+          <canvas id="answer" width="320" height="320"></canvas>
+        </td>
+      </tr>
+    </table>
+    <script src="sketch.js"></script>
+  </body>
+</html>
