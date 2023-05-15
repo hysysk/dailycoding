@@ -31,11 +31,17 @@ window.addEventListener("load", () => {
 
       devices.forEach((device) => {
         if (device.kind === "videoinput") {
-          console.log(device.label, device.deviceId);
-          const opt = document.createElement("option");
-          opt.value = device.deviceId;
-          opt.text = device.label;
-          inputSelector.add(opt);
+          if (device.deviceId) {
+            console.log(device.label, device.deviceId);
+            const opt = document.createElement("option");
+            opt.value = device.deviceId;
+            opt.text = device.label;
+            inputSelector.add(opt);
+          } else {
+            const p = document.createElement("p");
+            p.appendChild(document.createTextNode("Couldn't get the device ID"));
+            document.body.appendChild(p);
+          }
         }
       })
     })
