@@ -120,7 +120,8 @@ Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/so
 
 ### Browser
 Maintain Canvas Aspect Ratio [20230417](https://hysysk.github.io/dailycoding/utility/20230417)<br>
-Get cameras [20230515](https://hysysk.github.io/dailycoding/utility/20230515)
+Get cameras [20230515](https://hysysk.github.io/dailycoding/utility/20230515)<br>
+Get cameras on mobile and desktop [20230516](https://hysysk.github.io/dailycoding/utility/20230516)
 
 ## Book
 

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>20230516</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 1rem;
+      }
+      select {
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      video {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+    <script>
+      window.addEventListener("load", () => {
+        const video = document.querySelector("video");
+        const constraints = {
+          audio: false,
+          video: {},
+        };
+
+        navigator.mediaDevices
+          .getUserMedia(constraints)
+          .then((stream) => {
+            video.srcObject = stream;
+
+            navigator.mediaDevices
+              .enumerateDevices()
+              .then((devices) => {
+                const inputSelector = document.querySelector("#cameras");
+
+                inputSelector.addEventListener("change", (e) => {
+                  const selectedId = e.target.value;
+                  if (selectedId) {
+                    const constraints = {
+                      audio: false,
+                      video: { deviceId: selectedId },
+                    };
+
+                    navigator.mediaDevices
+                      .getUserMedia(constraints)
+                      .then((stream) => {
+                        video.srcObject = stream;
+                      })
+                      .catch((err) => {
+                        console.error(`${err.name}: ${err.message}`);
+                      });
+                  } else {
+                    video.srcObject = null;
+                  }
+                });
+
+                video.addEventListener("loadedmetadata", () => {
+                  video.play();
+                  console.log(video.clientWidth, video.clientHeight);
+                });
+
+                devices.forEach((device) => {
+                  if (device.kind === "videoinput") {
+                    if (device.deviceId) {
+                      console.log(device.label, device.deviceId);
+                      const opt = document.createElement("option");
+                      opt.value = device.deviceId;
+                      opt.text = device.label;
+                      inputSelector.add(opt);
+                    } else {
+                      const p = document.createElement("p");
+                      p.appendChild(
+                        document.createTextNode("Couldn't get the device ID")
+                      );
+                      document.body.appendChild(p);
+                    }
+                  }
+                });
+              })
+              .catch((err) => {
+                console.error(`${err.name}: ${err.message}`);
+              });
+          })
+          .catch((err) => {
+            console.error(`${err.name}: ${err.message}`);
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <select id="cameras">
+      <option value="">Select a camera</option>
+    </select>
+    <video src="" muted autoplay playsinline></video>
+  </body>
+</html>
