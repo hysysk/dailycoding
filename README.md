@@ -72,6 +72,9 @@
 [20200414](https://hysysk.github.io/dailycoding/form/20200414/)
 [20200415](https://hysysk.github.io/dailycoding/form/20200415/)
 
+### [Computational Geometry](https://gihyo.jp/list/group/Blogopolis%E3%81%8B%E3%82%89%E5%AD%A6%E3%81%B6%E8%A8%88%E7%AE%97%E5%B9%BE%E4%BD%95#rt:/dev/serial/01/geometry/0001)
+[20230524](https://hysysk.github.io/dailycoding/form/20230524/)
+
 ## Sound
 
 ### Oscillator
@@ -169,7 +172,7 @@ Slow Convex Hull
 [20220322](https://hysysk.github.io/dailycoding/book/20220322/)
 [20220328](https://hysysk.github.io/dailycoding/book/20220328/)
 
-### Book of Shader
+### [The Book of Shaders](https://thebookofshaders.com/)
 [20220103](https://hysysk.github.io/dailycoding/book/20220103)
 [20220104](https://hysysk.github.io/dailycoding/book/20220104)
 [20220105](https://hysysk.github.io/dailycoding/book/20220105)
