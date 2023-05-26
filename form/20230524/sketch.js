@@ -20,7 +20,7 @@ class Line {
 
   getIntersectionPoint(l) {
     const d = this.a * l.b - l.a * this.b;
-    if (d <= 0.001) {
+    if (Math.abs(d) <= 0.001) {
       return null;
     }
     const x = (this.b * l.c - l.b * this.c) / d;

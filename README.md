@@ -74,6 +74,7 @@
 
 ### [Computational Geometry](https://gihyo.jp/list/group/Blogopolis%E3%81%8B%E3%82%89%E5%AD%A6%E3%81%B6%E8%A8%88%E7%AE%97%E5%B9%BE%E4%BD%95#rt:/dev/serial/01/geometry/0001)
 [20230524](https://hysysk.github.io/dailycoding/form/20230524/)
+[20230526](https://hysysk.github.io/dailycoding/form/20230526/)
 
 ## Sound
 
