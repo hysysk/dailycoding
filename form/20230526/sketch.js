@@ -41,7 +41,7 @@ class LineSegment {
     if (!this.intersects(l)) {
       return null;
     }
-    return l.getLineIntersectionPoint(this.toLine());
+    return l.getIntersectionPoint(this.toLine());
   }
 
   getSegmentIntersectionPoint(s) {
