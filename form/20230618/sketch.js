@@ -15,7 +15,7 @@ function drawLines(listPoints, itinerary) {
   }
 }
 
-function drawTriangle(triangle, center, radius) {
+function drawTriangle(triangle) {
   let itinerary = [0, 1, 2, 0];
   drawLines(triangle, itinerary);
 }
