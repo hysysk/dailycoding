@@ -20,4 +20,4 @@ function drawTriangle(triangle) {
   drawLines(triangle, itinerary);
 }
 
-drawTriangle(pointsToTriangle({x: 50, y: 20}, {x: 250, y: 400}, {x: 450, y: 150}));
+drawTriangle(pointsToTriangle({ x: 50, y: 100 }, { x: 250, y: 450 }, { x: 450, y: 180 }));

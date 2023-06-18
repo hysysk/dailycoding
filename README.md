@@ -92,6 +92,7 @@
 [20230526](https://hysysk.github.io/dailycoding/form/20230526/)
 [20230531](https://hysysk.github.io/dailycoding/form/20230531/)
 [20230611](https://hysysk.github.io/dailycoding/form/20230611/)
+[20230618](https://hysysk.github.io/dailycoding/form/20230618/)
 
 ## Sound
 
