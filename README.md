@@ -150,6 +150,7 @@ Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/so
 [20230704](https://hysysk.github.io/dailycoding/math/20230704/)
 [20230705](https://hysysk.github.io/dailycoding/math/20230705/)
 [20230707](https://hysysk.github.io/dailycoding/math/20230707/)
+[20230718](https://hysysk.github.io/dailycoding/math/20230718/)
 
 ### Fractal
 
