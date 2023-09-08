@@ -117,6 +117,7 @@ Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/so
 
 [20180213](https://hysysk.github.io/dailycoding/interaction/20180213/)
 [20180219](https://hysysk.github.io/dailycoding/interaction/20180219/)
+[20230909](https://hysysk.github.io/dailycoding/interaction/20230909/)
 
 ## Math
 

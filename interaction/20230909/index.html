@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>20230909</title>
+    <meta name="viewport" content="width=640" />
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overscroll-behavior: none;
+      }
+      body {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      canvas {
+        width: 500px;
+        height: 500px;
+        border: 1px solid black;
+        background-color: #fff;
+        margin-bottom: 2rem;
+      }
+      input {
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="500" height="500" id="canvas"></canvas>
+    <div>
+      <input type="range" id="grid" min="1" max="10" step="1" value="5" />
+    </div>
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      const W = 500;
+      const H = 500;
+      let gridNumber = 5;
+      let gridW = W / gridNumber;
+      let gridH = H / gridNumber;
+      let offsetX = W / gridNumber / 2 - gridW / 2;
+      let offsetY = H / gridNumber / 2 - gridH / 2;
+
+      let mouseX = 0;
+      let mouseY = 0;
+      let angle = 0;
+
+      let slider = document.getElementById("grid");
+
+      slider.addEventListener("input", () => {
+        gridNumber = parseInt(slider.value, 10);
+        gridW = W / gridNumber;
+        gridH = H / gridNumber;
+        offsetX = W / gridNumber / 2 - gridW / 2;
+        offsetY = H / gridNumber / 2 - gridH / 2;
+      });
+
+      let rect = canvas.getBoundingClientRect();
+
+      canvas.ontouchmove = (e) => {
+        mouseX = e.touches[0].clientX - rect.left;
+        mouseY = e.touches[0].clientY - rect.top;
+      };
+
+      canvas.onmousemove = (e) => {
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+      };
+
+      const draw = () => {
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0, 0, W, H);
+
+        for (let i = 0; i < gridNumber; i++) {
+          for (let j = 0; j < gridNumber; j++) {
+            let x = i * (W / gridNumber);
+            let y = j * (H / gridNumber);
+
+            angle = Math.atan2(
+              mouseY - y - offsetY - gridH / 2,
+              mouseX - x - offsetX - gridW / 2
+            );
+
+            ctx.save();
+            ctx.translate(x + offsetX, y + offsetY);
+            ctx.translate(gridW / 2, gridH / 2);
+            ctx.rotate(angle);
+            ctx.translate(-gridW / 2, -gridH / 2);
+            ctx.beginPath();
+            ctx.moveTo(0, gridH / 2);
+            ctx.lineTo(gridW, gridH / 2);
+            ctx.stroke();
+            ctx.restore();
+          }
+        }
+
+        requestAnimationFrame(draw);
+      };
+
+      requestAnimationFrame(draw);
+    </script>
+  </body>
+</html>
