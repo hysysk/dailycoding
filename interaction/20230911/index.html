@@ -16,18 +16,19 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        font-family: sans-serif;
       }
       canvas {
         width: 500px;
         height: 500px;
         border: 1px solid black;
         background-color: #fff;
-        margin-bottom: 2rem;
       }
     </style>
   </head>
   <body>
     <canvas width="500" height="500" id="canvas"></canvas>
+    <p>Click to switch enable / disable drawing. Double click to erase.</p>
     <script>
       const canvas = document.getElementById("canvas");
       const ctx = canvas.getContext("2d");
