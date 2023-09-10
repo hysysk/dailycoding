@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>20230910</title>
+    <meta name="viewport" content="width=640" />
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overscroll-behavior: none;
+      }
+      body {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      canvas {
+        width: 500px;
+        height: 500px;
+        border: 1px solid black;
+        background-color: #fff;
+        margin-bottom: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="500" height="500" id="canvas"></canvas>
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      const W = 500;
+      const H = 500;
+      let gridNumber = 10;
+      let gridW = W / gridNumber;
+      let gridH = H / gridNumber;
+      let offsetX = W / gridNumber / 2 - gridW / 2;
+      let offsetY = H / gridNumber / 2 - gridH / 2;
+      let isDrawing = false;
+
+      let mouseX = 0;
+      let mouseY = 0;
+
+      let rect = canvas.getBoundingClientRect();
+
+      canvas.addEventListener("click", (e) => {
+        isDrawing = !isDrawing;
+      });
+
+      canvas.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+      });
+
+      canvas.addEventListener("touchmove", (e) => {
+        mouseX = e.touches[0].clientX - rect.left;
+        mouseY = e.touches[0].clientY - rect.top;
+      });
+
+      canvas.addEventListener("dblclick", (e) => {
+        fillBackground();
+      });
+
+      const fillBackground = (color) => {
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = color || "#fff";
+        ctx.fillRect(0, 0, W, H);
+      };
+
+      const setup = () => {
+        gridW = W / gridNumber;
+        gridH = H / gridNumber;
+        offsetX = W / gridNumber / 2 - gridW / 2;
+        offsetY = H / gridNumber / 2 - gridH / 2;
+        requestAnimationFrame(draw);
+      };
+
+      const draw = () => {
+        for (let i = 0; i < gridNumber; i++) {
+          ctx.beginPath();
+          ctx.moveTo(i * gridW, 0);
+          ctx.lineTo(i * gridW, H);
+          ctx.stroke();
+          for (let j = 0; j < gridNumber; j++) {
+            ctx.beginPath();
+            ctx.moveTo(0, j * gridH);
+            ctx.lineTo(W, j * gridH);
+            ctx.stroke();
+          }
+        }
+
+        if (isDrawing) {
+          ctx.fillStyle = "#000";
+          ctx.rect(
+            Math.floor(mouseX / gridW) * gridW,
+            Math.floor(mouseY / gridH) * gridH,
+            gridW,
+            gridH
+          );
+          ctx.fill();
+        }
+
+        requestAnimationFrame(draw);
+      };
+      setup();
+    </script>
+  </body>
+</html>
