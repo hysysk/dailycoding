@@ -163,6 +163,10 @@ Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/so
 
 [20200712](https://hysysk.github.io/dailycoding/math/20200712)
 
+
+## Image Processing
+Linear function [20230914](https://hysysk.github.io/dailycoding/image/20230914/)
+
 ## Utility
 
 ### Browser
