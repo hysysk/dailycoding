@@ -111,6 +111,10 @@ Osc -> Filter [20230202](https://hysysk.github.io/dailycoding/sound/20230202)<br
 Osc -> VCA -> Filter [20230203](https://hysysk.github.io/dailycoding/sound/20230203)<br>
 Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/sound/20230206)<br>
 
+## Image
+Linear function [20230914](https://hysysk.github.io/dailycoding/image/20230914/)<br>
+Linear stretch [20230915](https://hysysk.github.io/dailycoding/image/20230915/)
+
 ## Interaction
 
 ### Intersection
@@ -162,11 +166,6 @@ Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/so
 ### Fractal
 
 [20200712](https://hysysk.github.io/dailycoding/math/20200712)
-
-
-## Image Processing
-Linear function [20230914](https://hysysk.github.io/dailycoding/image/20230914/)
-Linear stretch [20230915](https://hysysk.github.io/dailycoding/image/20230915/)
 
 ## Utility
 
