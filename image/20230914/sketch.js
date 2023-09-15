@@ -9,17 +9,18 @@ const p2Slider = document.getElementById("p2");
 
 p1Slider.addEventListener("input", () => {
   p1 = +p1Slider.value;
+  ctx.drawImage(img, 0, 0);
   effect();
 });
 
 p2Slider.addEventListener("input", () => {
   p2 = +p2Slider.value;
+  ctx.drawImage(img, 0, 0);
   effect();
 });
 
 
 const effect = () => {
-  ctx.drawImage(img, 0, 0);
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const data = imageData.data;
   for (let i = 0; i < data.length; i += 4) {
@@ -31,6 +32,7 @@ const effect = () => {
 }
 
 img.onload = () => {
+  ctx.drawImage(img, 0, 0);
   effect();
 }
 
