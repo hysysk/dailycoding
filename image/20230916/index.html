@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=640" />
+    <title>20230916</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overscroll-behavior: none;
+      }
+      body {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-family: sans-serif;
+      }
+      canvas {
+        width: 500px;
+        height: 500px;
+        background-color: #fff;
+      }
+      a {
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <p>
+      <label>Gamma<input type="range" id="gamma" min="0" max="300" value="100" step="1" /></label>
+    </p>
+    <p>Reference: 昌達 慶仁『<a href="https://www.sbcr.jp/product/4797344370/">詳解 画像処理プログラミング</a>』<br />
+      Photography: <a href="https://unsplash.com/photos/KFIjzXYg1RM">Jeremy Bishop</a> on <a href="https://unsplash.com/">Unsplash</a></p>
+    <script src="sketch.js"></script>
+  </body>
+</html>

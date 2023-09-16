@@ -113,7 +113,8 @@ Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/so
 
 ## Image
 Linear function [20230914](https://hysysk.github.io/dailycoding/image/20230914/)<br>
-Linear stretch [20230915](https://hysysk.github.io/dailycoding/image/20230915/)
+Linear stretch [20230915](https://hysysk.github.io/dailycoding/image/20230915/)<br>
+Gamma correction [20230916](https://hysysk.github.io/dailycoding/image/20230916/)
 
 ## Interaction
 
