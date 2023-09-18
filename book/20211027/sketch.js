@@ -35,13 +35,8 @@ function draw() {
 
   let val = a * xj + b * yj + c;
   let angle = atan2(y1 - y0, x1 - x0);
-  if (val < 0) {
-    angle = angle + HALF_PI;
-  } else {
-    angle = angle - HALF_PI;
-  }
-
-  let x2 = xj + r * cos(angle);
-  let y2 = yj + r * sin(angle);
+  let pAngle = val < 0 ? angle + HALF_PI : angle - HALF_PI;
+  let x2 = xj + r * cos(pAngle);
+  let y2 = yj + r * sin(pAngle);
   line(xj, yj, x2, y2);
 }
