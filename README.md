@@ -122,9 +122,6 @@ Sigmoid function [20230916](https://hysysk.github.io/dailycoding/image/20230916/
 ### Filter mask
 Simple smoothing [20230918](https://hysysk.github.io/dailycoding/image/20230918/)
 
-### Masking
-[20230917](https://hysysk.github.io/dailycoding/image/20230917/)
-
 ## Interaction
 
 ### Intersection
