@@ -112,10 +112,18 @@ Osc -> VCA -> Filter [20230203](https://hysysk.github.io/dailycoding/sound/20230
 Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/sound/20230206)
 
 ## Image
+
+### Color transformation
 Linear function [20230914](https://hysysk.github.io/dailycoding/image/20230914/)<br>
 Linear stretch [20230915](https://hysysk.github.io/dailycoding/image/20230915/)<br>
 Gamma correction [20230916](https://hysysk.github.io/dailycoding/image/20230916/)<br>
 Sigmoid function [20230916](https://hysysk.github.io/dailycoding/image/20230916/sigmoid.html)<br>
+
+### Filter mask
+Simple smoothing [20230918](https://hysysk.github.io/dailycoding/image/20230918/)
+
+### Masking
+[20230917](https://hysysk.github.io/dailycoding/image/20230917/)
 
 ## Interaction
 
