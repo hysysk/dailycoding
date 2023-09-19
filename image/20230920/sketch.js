@@ -1,6 +1,27 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d", { willReadFrequently: true });
 const img = new Image();
+const edgeExtraction = [
+  0, -1, 0,
+  -1, 0, 1,
+  0, 1, 0
+];
+const sharpening = [
+  0, -1, 0,
+  -1, 5, -1,
+  0, -1, 0
+];
+let filter = edgeExtraction;
+let select = document.getElementById("select");
+select.addEventListener("change", (e) => {
+  if (e.target.value === "edgeExtraction") {
+    filter = edgeExtraction;
+  } else if (e.target.value === "sharpening") {
+    filter = sharpening;
+  }
+  ctx.drawImage(img, 0, 0);
+  effect();
+});
 
 const effect = () => {
   let r, g, b;
@@ -8,12 +29,6 @@ const effect = () => {
   let y = 0;
   let w = canvas.width;
   let h = canvas.height;
-  const filter = [
-    1, 1, 1,
-    1, 4, 1,
-    1, 1, 1
-  ];
-  const filterSum = filter.reduce((a, b) => a + b);
 
   let inputImageData = ctx.getImageData(0, 0, w, h);
   let inputData = inputImageData.data;
@@ -45,8 +60,8 @@ const effect = () => {
     for (x = 0; x < w; x++) {
       let f = 0;
       r = g = b = 0;
-      for(let yy = -1; yy <= 1; yy++) {
-        for(let xx = -1; xx <= 1; xx++) {
+      for (let yy = -1; yy <= 1; yy++) {
+        for (let xx = -1; xx <= 1; xx++) {
           let d = getPixel(x + xx, y + yy);
           r += d[0] * filter[f];
           g += d[1] * filter[f];
@@ -54,7 +69,7 @@ const effect = () => {
           f++;
         }
       }
-      setPixel(x, y, [r / filterSum, g / filterSum, b / filterSum]);
+      setPixel(x, y, [r, g, b]);
     }
   }
   ctx.putImageData(outputImageData, 0, 0);

@@ -121,7 +121,8 @@ Sigmoid function [20230916](https://hysysk.github.io/dailycoding/image/20230916/
 
 ### Filter mask
 Simple smoothing [20230918](https://hysysk.github.io/dailycoding/image/20230918/)<br>
-Weighted moving average [20230919](https://hysysk.github.io/dailycoding/image/20230919/)
+Weighted moving average [20230919](https://hysysk.github.io/dailycoding/image/20230919/)<br>
+Edge extraction & Sharpening [20230920](https://hysysk.github.io/dailycoding/image/20230920/)<br>
 
 ## Interaction
 
