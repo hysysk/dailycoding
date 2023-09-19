@@ -120,7 +120,8 @@ Gamma correction [20230916](https://hysysk.github.io/dailycoding/image/20230916/
 Sigmoid function [20230916](https://hysysk.github.io/dailycoding/image/20230916/sigmoid.html)<br>
 
 ### Filter mask
-Simple smoothing [20230918](https://hysysk.github.io/dailycoding/image/20230918/)
+Simple smoothing [20230918](https://hysysk.github.io/dailycoding/image/20230918/)<br>
+Weighted moving average [20230919](https://hysysk.github.io/dailycoding/image/20230919/)
 
 ## Interaction
 
