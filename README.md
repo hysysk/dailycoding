@@ -35,6 +35,10 @@
 
 [20200713](https://hysysk.github.io/dailycoding/effect/20200713)
 
+### Distortion
+
+[20230920](https://hysysk.github.io/dailycoding/effect/20230920)
+
 ## Simulation
 
 ### Watercolor
@@ -114,12 +118,14 @@ Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/so
 ## Image
 
 ### Color transformation
+
 Linear function [20230914](https://hysysk.github.io/dailycoding/image/20230914/)<br>
 Linear stretch [20230915](https://hysysk.github.io/dailycoding/image/20230915/)<br>
 Gamma correction [20230916](https://hysysk.github.io/dailycoding/image/20230916/)<br>
 Sigmoid function [20230916](https://hysysk.github.io/dailycoding/image/20230916/sigmoid.html)<br>
 
 ### Filter mask
+
 Simple smoothing [20230918](https://hysysk.github.io/dailycoding/image/20230918/)<br>
 Weighted moving average [20230919](https://hysysk.github.io/dailycoding/image/20230919/)<br>
 Edge extraction & Sharpening [20230920](https://hysysk.github.io/dailycoding/image/20230920/)<br>
@@ -136,6 +142,7 @@ Edge extraction & Sharpening [20230920](https://hysysk.github.io/dailycoding/ima
 [20230909](https://hysysk.github.io/dailycoding/interaction/20230909/)
 
 ### Drawing tool
+
 [20230911](https://hysysk.github.io/dailycoding/interaction/20230911/)
 
 ## Math

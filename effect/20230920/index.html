@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>20230920</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+      }
+
+      canvas {
+        width: 500px;
+        height: 500px;
+      }
+
+      #offCanvas {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <canvas id="offCanvas" width="500" height="500"></canvas>
+    <script src="sketch.js"></script>
+  </body>
+</html>
