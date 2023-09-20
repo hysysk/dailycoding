@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 const W = canvas.width;
 const H = canvas.height;
 
-const offCanvas = document.getElementById("offCanvas");
+const offCanvas = new OffscreenCanvas(W, H);
 const offCtx = offCanvas.getContext("2d");
 
 let frame = 0;
