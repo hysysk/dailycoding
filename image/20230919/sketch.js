@@ -25,7 +25,7 @@ const effect = () => {
     if (x >= w) x = w - 1;
     if (y < 0) y = 0;
     if (y >= h) y = h - 1;
-    let i = (y * h + x) * 4;
+    let i = (y * w + x) * 4;
     return [inputData[i], inputData[i + 1], inputData[i + 2]];
   }
 
