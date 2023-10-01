@@ -130,6 +130,7 @@ Simple smoothing [20230918](https://hysysk.github.io/dailycoding/image/20230918/
 Weighted moving average [20230919](https://hysysk.github.io/dailycoding/image/20230919/)<br>
 Edge extraction & Sharpening [20230920](https://hysysk.github.io/dailycoding/image/20230920/)<br>
 Blur [20230923](https://hysysk.github.io/dailycoding/image/20230923/)
+Blur along arbitrary angle [20231001](https://hysysk.github.io/dailycoding/image/20231001/)
 
 ## Interaction
 
