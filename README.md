@@ -146,6 +146,7 @@ Blur along arbitrary angle [20231001](https://hysysk.github.io/dailycoding/image
 ### Drawing tool
 
 [20230911](https://hysysk.github.io/dailycoding/interaction/20230911/)
+[20231002](https://hysysk.github.io/dailycoding/interaction/20231002/)
 
 ## Math
 

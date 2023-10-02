@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>20231002</title>
+    <meta name="viewport" content="width=640" />
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overscroll-behavior: none;
+      }
+      body {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-family: sans-serif;
+      }
+      canvas {
+        width: 500px;
+        height: 500px;
+        border: 1px solid black;
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="500" height="500" id="canvas"></canvas>
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      const W = 500;
+      const H = 500;
+      let gridNumber = 10;
+      let gridW = W / gridNumber;
+      let gridH = H / gridNumber;
+      let offsetX = W / gridNumber / 2 - gridW / 2;
+      let offsetY = H / gridNumber / 2 - gridH / 2;
+      let cells = new Array(gridNumber);
+      for (let i = 0; i < cells.length; i++) {
+        cells[i] = new Array(gridNumber).fill(0);
+      }
+
+      let rect = canvas.getBoundingClientRect();
+
+      canvas.addEventListener("click", (e) => {
+        let i = Math.floor((e.clientX - rect.left) / gridW);
+        let j = Math.floor((e.clientY - rect.top) / gridH);
+        cells[i][j] = 1;
+      });
+
+      const setup = () => {
+        gridW = W / gridNumber;
+        gridH = H / gridNumber;
+        requestAnimationFrame(draw);
+      };
+
+      const draw = () => {
+        ctx.clearRect(0, 0, W, H);
+
+        for (let i = 0; i < cells.length; i++) {
+          for (let j = 0; j < cells[i].length; j++) {
+            if (cells[i][j] === 1) {
+              ctx.fillStyle = "#000";
+              ctx.roundRect(
+                i * gridW - 4,
+                j * gridH - 4,
+                gridW + 8,
+                gridH + 8,
+                16
+              );
+              ctx.fill();
+
+              // bottom left
+              if (i > 0 && i <= cells[i].length - 1 && j >= 0 && j < cells.length - 1) {
+                if (cells[i - 1][j + 1] === 1) {
+                  ctx.fillStyle = "#000";
+                  ctx.beginPath();
+                  ctx.moveTo(i * gridW, j * gridH + gridH - gridH / 3);
+                  ctx.lineTo(i * gridW - gridW / 3, j * gridH + gridH);
+                  ctx.lineTo(i * gridW, j * gridH + gridH + gridH / 3);
+                  ctx.lineTo(i * gridW + gridW / 3, j * gridH + gridH);
+                  ctx.fill();
+                }
+              }
+
+              // bottom right
+              if (i >= 0 && i < cells[i].length - 1 && j >= 0 && j < cells.length - 1) {
+                if (cells[i + 1][j + 1] === 1) {
+                  ctx.fillStyle = "#000";
+                  ctx.beginPath();
+                  ctx.moveTo(i * gridW + gridW, j * gridH + gridH - gridH / 3);
+                  ctx.lineTo(i * gridW + gridW + gridW / 3, j * gridH + gridH);
+                  ctx.lineTo(i * gridW + gridW, j * gridH + gridH + gridH / 3);
+                  ctx.lineTo(i * gridW + gridW - gridW / 3, j * gridH + gridH);
+                  ctx.fill();
+                }
+              }
+            }
+          }
+        }
+
+        requestAnimationFrame(draw);
+      };
+      setup();
+    </script>
+  </body>
+</html>
