@@ -75,29 +75,97 @@
               ctx.fill();
 
               // bottom left
-              if (i > 0 && i <= cells[i].length - 1 && j >= 0 && j < cells.length - 1) {
+              if (
+                i > 0 &&
+                i <= cells[i].length - 1 &&
+                j >= 0 &&
+                j < cells.length - 1
+              ) {
                 if (cells[i - 1][j + 1] === 1) {
                   ctx.fillStyle = "#000";
                   ctx.beginPath();
                   ctx.moveTo(i * gridW, j * gridH + gridH - gridH / 2);
-                  ctx.arcTo(i * gridW, j * gridH + gridH, i * gridW - gridW / 2, j * gridH + gridH, 32)
+                  ctx.arcTo(
+                    i * gridW,
+                    j * gridH + gridH,
+                    i * gridW - gridW / 2,
+                    j * gridH + gridH,
+                    32
+                  );
                   ctx.lineTo(i * gridW, j * gridH + gridH + gridH / 2);
-                  ctx.arcTo(i * gridW, j * gridH + gridH, i * gridW + gridW / 2, j * gridH + gridH, 32);
+                  ctx.arcTo(
+                    i * gridW,
+                    j * gridH + gridH,
+                    i * gridW + gridW / 2,
+                    j * gridH + gridH,
+                    32
+                  );
                   ctx.lineTo(i * gridW, j * gridH + gridH - gridH / 2);
                   ctx.fill();
                 }
               }
 
+              // bottom center
+              if (j >= 0 && j < cells.length - 1) {
+                if (cells[i][j + 1] === 1) {
+                  ctx.fillStyle = "#000";
+                  ctx.beginPath();
+                  ctx.moveTo(i * gridW - 2, j * gridH + gridH - gridH / 2);
+                  ctx.lineTo(i * gridW - 2, j * gridH + gridH + gridH / 2);
+                  ctx.lineTo(
+                    i * gridW + gridW + 2,
+                    j * gridH + gridH + gridH / 2
+                  );
+                  ctx.lineTo(
+                    i * gridW + gridW + 2,
+                    j * gridH + gridH - gridH / 2
+                  );
+                  ctx.fill();
+                }
+              }
+
               // bottom right
-              if (i >= 0 && i < cells[i].length - 1 && j >= 0 && j < cells.length - 1) {
+              if (
+                i >= 0 &&
+                i < cells[i].length - 1 &&
+                j >= 0 &&
+                j < cells.length - 1
+              ) {
                 if (cells[i + 1][j + 1] === 1) {
                   ctx.fillStyle = "#000";
                   ctx.beginPath();
                   ctx.moveTo(i * gridW + gridW, j * gridH + gridH - gridH / 2);
-                  ctx.arcTo(i * gridW + gridW, j * gridH + gridH, i * gridW + gridW + gridW / 2, j * gridH + gridH, 32);
+                  ctx.arcTo(
+                    i * gridW + gridW,
+                    j * gridH + gridH,
+                    i * gridW + gridW + gridW / 2,
+                    j * gridH + gridH,
+                    32
+                  );
                   ctx.lineTo(i * gridW + gridW, j * gridH + gridH + gridH / 2);
-                  ctx.arcTo(i * gridW + gridW, j * gridH + gridH, i * gridW + gridW - gridW / 2, j * gridH + gridH, 32);
+                  ctx.arcTo(
+                    i * gridW + gridW,
+                    j * gridH + gridH,
+                    i * gridW + gridW - gridW / 2,
+                    j * gridH + gridH,
+                    32
+                  );
                   ctx.lineTo(i * gridW + gridW, j * gridH + gridH - gridH / 2);
+                  ctx.fill();
+                }
+              }
+
+              // middle right
+              if (i >= 0 && i < cells[i].length - 1) {
+                if (cells[i + 1][j] === 1) {
+                  ctx.beginPath();
+                  ctx.moveTo(i * gridW + gridW / 2, j * gridH - 2);
+                  ctx.lineTo(i * gridW + gridW + gridW / 2, j * gridH - 2);
+                  ctx.lineTo(
+                    i * gridW + gridW + gridW / 2,
+                    j * gridH + gridH + 2
+                  );
+                  ctx.lineTo(i * gridW + gridW /2, j * gridH + gridH + 2);
                   ctx.fill();
                 }
               }
