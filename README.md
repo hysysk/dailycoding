@@ -151,6 +151,7 @@ Radial blur [20231005](https://hysysk.github.io/dailycoding/image/20231005/)
 [20231003](https://hysysk.github.io/dailycoding/interaction/20231003/)
 
 ### Chain
+
 [20231204](https://hysysk.github.io/dailycoding/interaction/20231204/)
 
 ## Math
@@ -197,7 +198,8 @@ Radial blur [20231005](https://hysysk.github.io/dailycoding/image/20231005/)
 
 Maintain Canvas Aspect Ratio [20230417](https://hysysk.github.io/dailycoding/utility/20230417)<br>
 Get cameras [20230515](https://hysysk.github.io/dailycoding/utility/20230515)<br>
-Get cameras on mobile and desktop [20230516](https://hysysk.github.io/dailycoding/utility/20230516)
+Get cameras on mobile and desktop [20230516](https://hysysk.github.io/dailycoding/utility/20230516)<br>
+Using background-attachment: fixed [20240117](https://hysysk.github.io/dailycoding/utility/20240117)
 
 ## Book
 
