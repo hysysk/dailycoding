@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=640" />
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overscroll-behavior: none;
+      }
+      body {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-family: sans-serif;
+      }
+      canvas {
+        width: 500px;
+        height: 500px;
+        border: 1px solid black;
+        background-color: #fff;
+      }
+    </style>
+    <title>20240203</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <p>ArrowLeft / ArrowRight</p>
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      const W = 500;
+      const H = 500;
+      const playerW = 20;
+      const playerH = 30;
+      let playerX = W / 2 - playerW / 2;
+      let playerY = H / 2 - playerH;
+
+      const trackKeys = (keys) => {
+        let down = Object.create(null);
+        function track(event) {
+          if (keys.includes(event.key)) {
+            down[event.key] = event.type === "keydown";
+            event.preventDefault();
+          }
+        }
+        window.addEventListener("keydown", track);
+        window.addEventListener("keyup", track);
+        return down;
+      };
+      const arrowKeys = trackKeys(["ArrowLeft", "ArrowRight"]);
+
+      const draw = () => {
+        ctx.clearRect(0, 0, W, H);
+
+        ctx.strokeStyle = "black";
+        ctx.moveTo(0, H / 2);
+        ctx.lineTo(W, H / 2);
+
+        ctx.fillStyle = "black";
+        ctx.fillRect(playerX, playerY, playerW, playerH);
+        ctx.stroke();
+
+        if (arrowKeys.ArrowLeft) {
+          playerX--;
+        }
+        if (arrowKeys.ArrowRight) {
+          playerX++;
+        }
+
+        requestAnimationFrame(draw);
+      };
+      draw();
+    </script>
+  </body>
+</html>
