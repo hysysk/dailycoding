@@ -157,7 +157,9 @@ Radial blur [20231005](https://hysysk.github.io/dailycoding/image/20231005/)
 ## Game
 
 ### Building a playform game
+
 [20240203](https://hysysk.github.io/dailycoding/game/20240203/)
+[20240204](https://hysysk.github.io/dailycoding/game/20240204/)
 
 ## Math
 
