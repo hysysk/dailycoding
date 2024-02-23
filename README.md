@@ -181,10 +181,6 @@ Jump [20240218](https://hysysk.github.io/dailycoding/game/20240218/)
 [20190807](https://hysysk.github.io/dailycoding/math/20190807/)
 [20190808](https://hysysk.github.io/dailycoding/math/20190808/)
 
-### Linear Algebra
-
-[20211219](https://hysysk.github.io/dailycoding/math/20211219/)
-
 ### Tiling
 
 [20230617](https://hysysk.github.io/dailycoding/math/20230617/)
@@ -241,6 +237,11 @@ Using background-attachment: fixed [20240117](https://hysysk.github.io/dailycodi
 [20210926](https://hysysk.github.io/dailycoding/book/20210926/)
 [20210927](https://hysysk.github.io/dailycoding/book/20210927/)
 [20210929](https://hysysk.github.io/dailycoding/book/20210929/)
+
+### Paul Orland - [Math for Programmers](https://www.manning.com/books/math-for-programmers)
+
+#### Vectors and Graphics
+[20211219](https://hysysk.github.io/dailycoding/book/20211219/)
 
 ### Computer Art and Graphics
 
