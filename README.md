@@ -207,7 +207,7 @@ Using background-attachment: fixed [20240117](https://hysysk.github.io/dailycodi
 
 ## Book
 
-### Graphic Design Manual
+### Armin Hofmann - Graphic Design Manual
 
 [20180109](https://hysysk.github.io/dailycoding/book/20180109/)
 [20180112](https://hysysk.github.io/dailycoding/book/20180112/)
@@ -225,7 +225,7 @@ Using background-attachment: fixed [20240117](https://hysysk.github.io/dailycodi
 [20200804](https://hysysk.github.io/dailycoding/book/20200804/)
 [20200820](https://hysysk.github.io/dailycoding/book/20200820/)
 
-### 40 Grafische Programma's Voor De ZX Spectrum
+### M.Sutter - 40 Grafische Programma's Voor De ZX Spectrum
 
 [20210918](https://hysysk.github.io/dailycoding/book/20210918/)
 [20210919](https://hysysk.github.io/dailycoding/book/20210919/)
@@ -243,25 +243,25 @@ Using background-attachment: fixed [20240117](https://hysysk.github.io/dailycodi
 #### Vectors and Graphics
 [20211219](https://hysysk.github.io/dailycoding/book/20211219/)
 
-### Computer Art and Graphics
+### Axel Brück - Computer Art and Graphics
 
 [20211020](https://hysysk.github.io/dailycoding/book/20211020/)
 [20211021](https://hysysk.github.io/dailycoding/book/20211021/)
 
-### A programmer's geometry
+### Adrian Bowyer, John Woodwark - A programmer's geometry
 
 Distance between Two Points
 [20211026](https://hysysk.github.io/dailycoding/book/20211026/)<br>
 Distance from a Point to a Line
 [20211027](https://hysysk.github.io/dailycoding/book/20211027/)
 
-### Computational Geometry: Algorithms and Applications
+### Mark Berg, Otfried Cheong, Marc Kreveld, Mark Overmars -  [Computational Geometry: Algorithms and Applications](https://link.springer.com/book/10.1007/978-3-540-77974-2)
 
 Slow Convex Hull
 [20220322](https://hysysk.github.io/dailycoding/book/20220322/)
 [20220328](https://hysysk.github.io/dailycoding/book/20220328/)
 
-### [The Book of Shaders](https://thebookofshaders.com/)
+### Patricio Gonzalez Vivo, Jen Lowe - [The Book of Shaders](https://thebookofshaders.com/)
 
 [20220103](https://hysysk.github.io/dailycoding/book/20220103)
 [20220104](https://hysysk.github.io/dailycoding/book/20220104)
