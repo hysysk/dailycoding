@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>20240314</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        max-width: 500px;
+        margin: auto;
+      }
+      figure {
+        max-width: 500px;
+        max-height: 500px;
+        display: block;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      img {
+        display: block;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <figure>
+      <img src="../../assets/img.jpg" alt="" />
+    </figure>
+    <figure>
+      <img src="../../assets/img.jpg" alt="" />
+    </figure>
+    <figure>
+      <img src="../../assets/img.jpg" alt="" />
+    </figure>
+    <figure>
+      <img src="../../assets/img.jpg" alt="" />
+    </figure>
+    <figure>
+      <img src="../../assets/img.jpg" alt="" />
+    </figure>
+    <figure>
+      <img src="../../assets/img.jpg" alt="" />
+    </figure>
+
+    <script>
+      const items = document.querySelectorAll("figure");
+      const windowHeight = window.innerHeight;
+      const IMAGE_HEIGHT = items[0].clientHeight;
+
+      window.addEventListener("scroll", () => {
+        items.forEach((item, index) => {
+          const rect = item.getBoundingClientRect();
+          const img = item.querySelector("img");
+          const y = rect.top;
+          if (y < 0) {
+            img.style.transformOrigin = "bottom center";
+            img.style.transform = `scale(${(IMAGE_HEIGHT + y) / IMAGE_HEIGHT})`;
+          } else if (y > windowHeight - IMAGE_HEIGHT) {
+            img.style.transformOrigin = "top center";
+            img.style.transform = `scale(${(windowHeight - y) / IMAGE_HEIGHT})`;
+          } else {
+            img.style.transform = "scale(1)";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
