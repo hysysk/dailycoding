@@ -203,7 +203,8 @@ Jump [20240218](https://hysysk.github.io/dailycoding/game/20240218/)
 Maintain Canvas Aspect Ratio [20230417](https://hysysk.github.io/dailycoding/utility/20230417)<br>
 Get cameras [20230515](https://hysysk.github.io/dailycoding/utility/20230515)<br>
 Get cameras on mobile and desktop [20230516](https://hysysk.github.io/dailycoding/utility/20230516)<br>
-Using background-attachment: fixed [20240117](https://hysysk.github.io/dailycoding/utility/20240117)
+Using background-attachment: fixed [20240117](https://hysysk.github.io/dailycoding/utility/20240117)<br>
+Scaling with scroll [20240314](https://hysysk.github.io/dailycoding/utility/20240314)
 
 ## Book
 
