@@ -271,3 +271,4 @@ Slow Convex Hull
 
 ### Tatsuki Hayma - [Mathematics of Real-Time Graphics: Getting Started with GLSL](https://gihyo.jp/book/2022/978-4-297-13034-3)
 [20240319](https://hysysk.github.io/dailycoding/book/20240319)
+[20240320](https://hysysk.github.io/dailycoding/book/20240320)
