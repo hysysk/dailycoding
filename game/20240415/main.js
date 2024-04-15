@@ -94,11 +94,13 @@ let touch = {
 let canvasRect = canvas.getBoundingClientRect();
 
 canvas.addEventListener("touchstart", (e) => {
+  e.preventDefault();
   touch.isPressed = true;
   touch.positions = { x: e.touches[0].clientX - canvasRect.left, y: e.touches[0].clientY - canvasRect.top };
 });
 
 canvas.addEventListener("touchend", (e) => {
+  e.preventDefault();
   touch.isPressed = false;
   gamePad.pressedButton = "No button";
 });
