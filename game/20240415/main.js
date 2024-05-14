@@ -23,7 +23,7 @@ class GamePad {
     this.left = new Button(this.x, H - 100, 60, 40);
     this.up = new Button(this.x + 60, H - 160, 40, 60);
     this.right = new Button(this.x + 100, H - 100, 60, 40);
-    this.bottom = new Button(this.x + 60, H - 60, 40, 60);
+    this.down = new Button(this.x + 60, H - 60, 40, 60);
     this.a = new Button(W - 60, H - 110, 60, 60);
     this.b = new Button(W - 160, H - 110, 60, 60);
     this.pressedButton = "No button";
@@ -54,13 +54,13 @@ class GamePad {
     }
     this.ctx.fillRect(this.right.x, this.right.y, this.right.w, this.right.h);
 
-    if (touch.isPressed && this.bottom.isHit(x, y)) {
+    if (touch.isPressed && this.down.isHit(x, y)) {
       this.ctx.fillStyle = "gray";
-      this.pressedButton = "Bottom";
+      this.pressedButton = "Down";
     } else {
       this.ctx.fillStyle = "black";
     }
-    this.ctx.fillRect(this.bottom.x, this.bottom.y, this.bottom.w, this.bottom.h);
+    this.ctx.fillRect(this.down.x, this.down.y, this.down.w, this.down.h);
 
     if (touch.isPressed && this.a.isHit(x, y)) {
       this.ctx.fillStyle = "gray";
