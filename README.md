@@ -162,7 +162,7 @@ Move Left / Right [20240203](https://hysysk.github.io/dailycoding/game/20240203/
 Move Smoothly [20240204](https://hysysk.github.io/dailycoding/game/20240204/)<br>
 Jump [20240218](https://hysysk.github.io/dailycoding/game/20240218/)<br>
 Game Pad [20240415](https://hysysk.github.io/dailycoding/game/20240415/)<br>
-Multi Touch Game Pad [20240415](https://hysysk.github.io/dailycoding/game/20240415/)
+Multi Touch Game Pad [20240514](https://hysysk.github.io/dailycoding/game/20240514/)
 
 ## Math
 
