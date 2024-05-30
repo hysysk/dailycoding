@@ -67,24 +67,30 @@
       >
     </p>
     <script>
-      const items = document.querySelectorAll("figure");
-      const windowHeight = window.innerHeight;
-      const IMAGE_HEIGHT = items[0].clientHeight;
+      window.addEventListener("load", () => {
+        const items = document.querySelectorAll("figure");
+        const windowHeight = window.innerHeight;
+        const IMAGE_HEIGHT = items[0].clientHeight;
 
-      window.addEventListener("scroll", () => {
-        items.forEach((item, index) => {
-          const rect = item.getBoundingClientRect();
-          const img = item.querySelector("img");
-          const y = rect.top;
-          if (y < 0) {
-            img.style.transformOrigin = "bottom center";
-            img.style.transform = `scale(${(IMAGE_HEIGHT + y) / IMAGE_HEIGHT})`;
-          } else if (y > windowHeight - IMAGE_HEIGHT) {
-            img.style.transformOrigin = "top center";
-            img.style.transform = `scale(${(windowHeight - y) / IMAGE_HEIGHT})`;
-          } else {
-            img.style.transform = "scale(1)";
-          }
+        window.addEventListener("scroll", () => {
+          items.forEach((item, index) => {
+            const rect = item.getBoundingClientRect();
+            const img = item.querySelector("img");
+            const y = rect.top;
+            if (y < 0) {
+              img.style.transformOrigin = "bottom center";
+              img.style.transform = `scale(${
+                (IMAGE_HEIGHT + y) / IMAGE_HEIGHT
+              })`;
+            } else if (y > windowHeight - IMAGE_HEIGHT) {
+              img.style.transformOrigin = "top center";
+              img.style.transform = `scale(${
+                (windowHeight - y) / IMAGE_HEIGHT
+              })`;
+            } else {
+              img.style.transform = "scale(1)";
+            }
+          });
         });
       });
     </script>
