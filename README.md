@@ -164,7 +164,7 @@ Jump [20240218](https://hysysk.github.io/dailycoding/game/20240218/)<br>
 Game Pad [20240415](https://hysysk.github.io/dailycoding/game/20240415/)<br>
 Multi Touch Game Pad [20240514](https://hysysk.github.io/dailycoding/game/20240514/)<br>
 Better Multi Touch Game Pad [20240530](https://hysysk.github.io/dailycoding/game/20240530/)<br>
-[20240530](https://hysysk.github.io/dailycoding/game/20240530/)
+[20240610](https://hysysk.github.io/dailycoding/game/20240610/)
 
 ## Math
 
