@@ -2,6 +2,8 @@ import { Vector2 } from "./Vector2.js";
 
 const SPEED_NORMAL_MAX = 1.5;
 const SPEED_DASH_MAX = 3;
+const JUMP_POWER_NORMAL = 3;
+const JUMP_POWER_DASH = 3.8;
 
 class Player {
   constructor(pos, speed) {
@@ -34,17 +36,20 @@ class Player {
         this.speed.y = 0;
         this.isJumping = true;
         if (this.isDashing) {
-          console.log("dash jump");
-          this.speed.sub(new Vector2(0, 3.8));
+          this.speed.sub(new Vector2(0, JUMP_POWER_DASH));
         } else {
-          this.speed.sub(new Vector2(0, 3));
+          this.speed.sub(new Vector2(0, JUMP_POWER_NORMAL));
         }
       }
     }
 
     if (buttons.b.touchedId) {
       this.isDashing = true;
-      this.maxSpeed = SPEED_DASH_MAX;
+
+      // Prevent the player from dashing in the air.
+      if (!this.isJumping) {
+        this.maxSpeed = SPEED_DASH_MAX;
+      }
     } else {
       this.maxSpeed = SPEED_NORMAL_MAX;
 
@@ -56,10 +61,6 @@ class Player {
 
     // Add gravity
     this.speed.add(new Vector2(0, 0.1));
-
-    if (this.speed.y >= 0 && this.isJumping) {
-      this.isJumping = false;
-    }
 
     if (this.direction === 1) {
       if (!buttons.right.touchedId) {
@@ -84,6 +85,19 @@ class Player {
       }
     }
     this.pos.add(this.speed);
+  }
+
+  checkFloor(floor) {
+    if (this.pos.y + this.size.h > floor.pos.y) {
+      this.pos.y = floor.pos.y - this.size.h;
+      this.speed.y = 0;
+      this.isJumping = false;
+    }
+  }
+
+  draw(ctx) {
+    ctx.fillStyle = "black";
+    ctx.fillRect(this.pos.x, this.pos.y, this.size.w, this.size.h);
   }
 
   static create(pos) {

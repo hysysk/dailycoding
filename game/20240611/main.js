@@ -130,18 +130,11 @@ const draw = () => {
   ctx.lineTo(floor.size.w, floor.pos.y);
   ctx.stroke();
 
+  player.checkFloor(floor);
   player.update(gamePad.buttons);
 
-  // Check if the player is on the ground
-  if (player.pos.y + player.size.h > floor.pos.y) {
-    player.pos.y = floor.pos.y - player.size.h;
-    player.speed.y = 0;
-  }
-
   // Draw the player
-  ctx.fillStyle = "black";
-  ctx.fillRect(player.pos.x, player.pos.y, player.size.w, player.size.h);
-  ctx.stroke();
+  player.draw(ctx);
 
   gamePad.render();
 
