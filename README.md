@@ -165,7 +165,8 @@ Game Pad [20240415](https://hysysk.github.io/dailycoding/game/20240415/)<br>
 Multi Touch Game Pad [20240514](https://hysysk.github.io/dailycoding/game/20240514/)<br>
 Better Multi Touch Game Pad [20240530](https://hysysk.github.io/dailycoding/game/20240530/)<br>
 Controll Player [20240610](https://hysysk.github.io/dailycoding/game/20240610/)<br>
-Dash & Jump [20240611](https://hysysk.github.io/dailycoding/game/20240611/)
+Dash & Jump [20240611](https://hysysk.github.io/dailycoding/game/20240611/)<br>
+Add floors [20240715](https://hysysk.github.io/dailycoding/game/20240715/)
 
 ## Math
 
