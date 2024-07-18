@@ -167,7 +167,7 @@ Better Multi Touch Game Pad [20240530](https://hysysk.github.io/dailycoding/game
 Controll Player [20240610](https://hysysk.github.io/dailycoding/game/20240610/)<br>
 Dash & Jump [20240611](https://hysysk.github.io/dailycoding/game/20240611/)<br>
 Add floors [20240715](https://hysysk.github.io/dailycoding/game/20240715/)<br>
-Move camera [20240715](https://hysysk.github.io/dailycoding/game/20240718/)
+Move camera [20240718](https://hysysk.github.io/dailycoding/game/20240718/)
 
 ## Math
 
