@@ -10,7 +10,8 @@
 [20180105](https://hysysk.github.io/dailycoding/motion/20180105/)
 
 ### Building an animation engine
-[20240801](https://hysysk.github.io/dailycoding/motion/20240801/)
+Single Object [20240801](https://hysysk.github.io/dailycoding/motion/20240801/)<br>
+Multiple Objects [20240802](https://hysysk.github.io/dailycoding/motion/20240802/)
 
 ### Euler Integration
 
