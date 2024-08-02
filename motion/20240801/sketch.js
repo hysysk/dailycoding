@@ -27,11 +27,11 @@ class AnimationObject {
     this.targetH = (settings.to.h - this.fromH) || 0;
     this.easing = settings.easing || 'linear';
     this.completed = false;
+    this.frames = msec2frames(this.duration);
   }
 
   update() {
-    let frames = msec2frames(this.duration);
-    let progress = this.counter / frames;
+    let progress = this.counter / this.frames;
     this.x = this.fromX + Easing[this.easing](progress) * this.targetX;
     this.y = this.fromY + Easing[this.easing](progress) * this.targetY;
     this.w = this.fromW + Easing[this.easing](progress) * this.targetW;
@@ -42,22 +42,6 @@ class AnimationObject {
     } else {
       this.counter++;
     }
-  }
-
-  x() {
-    return this.x;
-  }
-
-  y() {
-    return this.y;
-  }
-
-  w() {
-    return this.w;
-  }
-
-  h() {
-    return this.h;
   }
 }
 

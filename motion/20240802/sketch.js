@@ -59,22 +59,6 @@ class AnimationObject {
       this.counter++;
     }
   }
-
-  x() {
-    return this.x;
-  }
-
-  y() {
-    return this.y;
-  }
-
-  w() {
-    return this.w;
-  }
-
-  h() {
-    return this.h;
-  }
 }
 
 function setup() {
