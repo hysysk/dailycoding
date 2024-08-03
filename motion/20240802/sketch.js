@@ -61,6 +61,8 @@ class AnimationObject {
   }
 }
 
+let obj, obj2;
+
 function setup() {
   frameRate(FRAME_RATE);
   createCanvas(500, 500);
