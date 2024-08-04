@@ -12,7 +12,8 @@
 ### Building an animation engine
 Single Object [20240801](https://hysysk.github.io/dailycoding/motion/20240801/)<br>
 Multiple Objects [20240802](https://hysysk.github.io/dailycoding/motion/20240802/)<br>
-Multiple timelines [20240803](https://hysysk.github.io/dailycoding/motion/20240803/)
+Multiple timelines [20240803](https://hysysk.github.io/dailycoding/motion/20240803/)<br>
+Add draw function to each keyframe [20240804](https://hysysk.github.io/dailycoding/motion/20240804/)
 
 ### Euler Integration
 
