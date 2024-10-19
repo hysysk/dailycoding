@@ -7,8 +7,8 @@ uniform vec2 u_resolution;
 
 void main() {
     vec2 pos = gl_FragCoord.xy / u_resolution.xy;
-    pos *= vec2(32.0f, 9.0f);
-    uint[9] a = uint[](uint(u_time), 0xbu, 9u, 0xbu ^ 9u, 0xffffffffu, 0xffffffffu + uint(u_time), floatBitsToUint(floor(u_time)), floatBitsToUint(-floor(u_time)), floatBitsToUint(11.5625f));
+    pos *= vec2(32.0f, 10.0f);
+    uint[10] a = uint[](floatBitsToUint(1.0f), floatBitsToUint(2.0f), floatBitsToUint(3.0f), floatBitsToUint(4.0f), floatBitsToUint(5.0f), floatBitsToUint(6.0f), floatBitsToUint(7.0f), floatBitsToUint(8.0f), floatBitsToUint(9.0f), floatBitsToUint(10.0f));
     if(fract(pos.x) < 0.1f) {
         if(floor(pos.x) == 1.0f) {
             fragColor = vec4(1, 0, 0, 1);
