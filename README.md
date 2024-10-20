@@ -289,3 +289,4 @@ Slow Convex Hull
 [20240320](https://hysysk.github.io/dailycoding/book/20240320)
 [20240323](https://hysysk.github.io/dailycoding/book/20240323)
 [20241019](https://hysysk.github.io/dailycoding/book/20241019)
+[20241020](https://hysysk.github.io/dailycoding/book/20241020)
