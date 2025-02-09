@@ -4,9 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      video {
+        width: 100%;
+        max-width: 500px;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      button {
+        font-size: 1rem;
+        display: block;
+        width: 80px;
+        height: 40px;
+        margin-bottom: 0.5rem;
+        background-color: white;
+        border: 1px solid black;
+      }
+      
+      input {
+        display: block;
+        width: 240px;
+        margin-bottom: 0.5rem;
+      }
+    </style>
   </head>
   <body>
-    <video src="700.mp4" controls></video>
+    <video src="700.mp4" playsinline></video>
     <button id="start">Start</button>
     <label>
       Delay Time
