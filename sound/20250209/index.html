@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <video src="700.mp4" controls></video>
+    <button id="start">Start</button>
+    <label>
+      Delay Time
+      <input
+        id="delayTime"
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.5"
+      />
+    </label>
+    <label>
+      Dry / Wet
+      <input id="wet" type="range" min="0" max="1" step="0.01" value="0.5" />
+    </label>
+    <p>
+      Video by
+      <a href="https://www.flickr.com/photos/kylemcdonald/8145070954/"
+        >Kyle Mcdonald</a
+      >
+    </p>
+    <script>
+      let delay;
+      let dryNode;
+      let wetNode;
+
+      function createEchoDelayEffect(audioContext) {
+        delay = audioContext.createDelay(1);
+        dryNode = audioContext.createGain();
+        wetNode = audioContext.createGain();
+        const mixer = audioContext.createGain();
+        const filter = audioContext.createBiquadFilter();
+
+        delay.delayTime.value = 0.5;
+        dryNode.gain.value = 0.3;
+        wetNode.gain.value = 0.4;
+        filter.frequency.value = 1000;
+        filter.type = "lowpass";
+        return {
+          placeBetween(inputNode, outputNode) {
+            inputNode.connect(delay);
+            delay.connect(wetNode);
+            wetNode.connect(filter);
+            filter.connect(delay);
+
+            inputNode.connect(dryNode);
+            dryNode.connect(mixer);
+            wetNode.connect(mixer);
+            mixer.connect(outputNode);
+          },
+        };
+      }
+
+      document.getElementById("start").addEventListener("click", () => {
+        const video = document.querySelector("video");
+        video.loop = true;
+        video.play();
+        const audioContext = new AudioContext();
+        const source = audioContext.createMediaElementSource(video);
+        const echoDelay = createEchoDelayEffect(audioContext);
+        echoDelay.placeBetween(source, audioContext.destination);
+
+        document.getElementById("delayTime").addEventListener("input", (e) => {
+          delay.delayTime.value = e.target.value;
+        });
+
+        document.getElementById("wet").addEventListener("input", (e) => {
+          wetNode.gain.value = e.target.value;
+          dryNode.gain.value = 1 - e.target.value;
+        });
+      });
+    </script>
+  </body>
+</html>

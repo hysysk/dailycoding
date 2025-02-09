@@ -10,6 +10,7 @@
 [20180105](https://hysysk.github.io/dailycoding/motion/20180105/)
 
 ### Building an animation engine
+
 Single Object [20240801](https://hysysk.github.io/dailycoding/motion/20240801/)<br>
 Multiple Objects [20240802](https://hysysk.github.io/dailycoding/motion/20240802/)<br>
 Multiple timelines [20240803](https://hysysk.github.io/dailycoding/motion/20240803/)<br>
@@ -120,6 +121,10 @@ Osc [20230131](https://hysysk.github.io/dailycoding/sound/20230131)<br>
 Osc -> Filter [20230202](https://hysysk.github.io/dailycoding/sound/20230202)<br>
 Osc -> VCA -> Filter [20230203](https://hysysk.github.io/dailycoding/sound/20230203)<br>
 Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/sound/20230206)
+
+### Effector
+
+Delay [20250209](https://hysysk.github.io/dailycoding/sound/20250209)
 
 ## Image
 
@@ -256,6 +261,7 @@ Scaling with scroll [20240314](https://hysysk.github.io/dailycoding/utility/2024
 ### Paul Orland - [Math for Programmers](https://www.manning.com/books/math-for-programmers)
 
 #### Vectors and Graphics
+
 [20211219](https://hysysk.github.io/dailycoding/book/20211219/)
 
 ### Axel Brück - Computer Art and Graphics
@@ -270,7 +276,7 @@ Distance between Two Points
 Distance from a Point to a Line
 [20211027](https://hysysk.github.io/dailycoding/book/20211027/)
 
-### Mark Berg, Otfried Cheong, Marc Kreveld, Mark Overmars -  [Computational Geometry: Algorithms and Applications](https://link.springer.com/book/10.1007/978-3-540-77974-2)
+### Mark Berg, Otfried Cheong, Marc Kreveld, Mark Overmars - [Computational Geometry: Algorithms and Applications](https://link.springer.com/book/10.1007/978-3-540-77974-2)
 
 Slow Convex Hull
 [20220322](https://hysysk.github.io/dailycoding/book/20220322/)
