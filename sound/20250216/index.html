@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      video {
+        width: 100%;
+        max-width: 500px;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      button {
+        font-size: 1rem;
+        display: block;
+        width: 80px;
+        height: 40px;
+        margin-bottom: 0.5rem;
+        background-color: white;
+        border: 1px solid black;
+      }
+
+      input {
+        display: block;
+        width: 240px;
+        margin-bottom: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <video src="../../assets/700.mp4" playsinline></video>
+    <button id="start">Start</button>
+    <label>
+      Grain Size
+      <input
+        id="grainSize"
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.2"
+      />
+    </label>
+    <label>
+      Playback Rate
+      <input
+        id="playbackRate"
+        type="range"
+        min="0"
+        max="2"
+        step="0.01"
+        value="1"
+      />
+    </label>
+    <p>
+      Video by
+      <a href="https://www.flickr.com/photos/kylemcdonald/8145070954/"
+        >Kyle Mcdonald</a
+      >
+    </p>
+    <script>
+      document.getElementById("start").addEventListener("click", async () => {
+        const grainSizeSlider = document.getElementById("grainSize");
+        const playbackRateSlider = document.getElementById("playbackRate");
+
+        // 1. Create an AudioContext
+        const audioContext = new AudioContext();
+
+        // 2. Add our custom AudioWorklet Processor
+        await audioContext.audioWorklet.addModule("./granular-processor.js");
+
+        // 3. Create our Granular AudioWorkletNode
+        const granularNode = new AudioWorkletNode(
+          audioContext,
+          "granular-processor",
+          {
+            numberOfInputs: 1,
+            numberOfOutputs: 1,
+            outputChannelCount: [2], // stereo output
+            parameterData: {
+              grainSize: grainSizeSlider.getAttribute("value"), // default grain size in seconds
+              playbackRate: playbackRateSlider.getAttribute("value"), // default playback rate
+            },
+          }
+        );
+
+        // 4. Grab the video element
+        const video = document.querySelector("video");
+        video.loop = true;
+
+        // 5. Create a MediaElementAudioSourceNode from the video
+        const sourceNode = audioContext.createMediaElementSource(video);
+
+        // 6. Connect the graph: source -> granular -> destination
+        sourceNode.connect(granularNode).connect(audioContext.destination);
+
+        // 7. Start playback (user gesture might be required for Autoplay policies)
+        video.play();
+
+        grainSizeSlider.addEventListener("input", (e) => {
+          granularNode.parameters
+            .get("grainSize")
+            .setValueAtTime(e.target.value, audioContext.currentTime + 5);
+        });
+
+        playbackRateSlider.addEventListener("input", (e) => {
+          granularNode.parameters
+            .get("playbackRate")
+            .setValueAtTime(e.target.value, audioContext.currentTime + 5);
+        });
+      });
+    </script>
+  </body>
+</html>

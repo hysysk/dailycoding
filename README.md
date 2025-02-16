@@ -125,6 +125,7 @@ Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/so
 ### Effector
 
 Delay [20250209](https://hysysk.github.io/dailycoding/sound/20250209)
+Granular Synthesis [20250216](https://hysysk.github.io/dailycoding/sound/20250216)
 
 ## Image
 
