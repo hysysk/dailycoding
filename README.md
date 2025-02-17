@@ -36,6 +36,10 @@ Add draw function to each keyframe [20240804](https://hysysk.github.io/dailycodi
 
 [20201215](https://hysysk.github.io/dailycoding/motion/20201215/)
 
+### Algorithmic Animation
+
+[20250217](https://hysysk.github.io/dailycoding/motion/20250217/)
+
 ## Effect
 
 ### Transition
@@ -124,7 +128,7 @@ Osc -> VCA -> Filter -> Delay [20230206](https://hysysk.github.io/dailycoding/so
 
 ### Effector
 
-Delay [20250209](https://hysysk.github.io/dailycoding/sound/20250209)
+Delay [20250209](https://hysysk.github.io/dailycoding/sound/20250209)<br>
 Granular Synthesis [20250216](https://hysysk.github.io/dailycoding/sound/20250216)
 
 ## Image
