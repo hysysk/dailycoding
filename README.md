@@ -45,6 +45,7 @@ Add draw function to each keyframe [20240804](https://hysysk.github.io/dailycodi
 ### Transition
 
 [20200713](https://hysysk.github.io/dailycoding/effect/20200713)
+[20251213](https://hysysk.github.io/dailycoding/effect/20251213)
 
 ### Distortion
 
