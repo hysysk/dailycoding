@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>20260724</title>
+    <meta name="viewport" content="width=640" />
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overscroll-behavior: none;
+      }
+      body {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-family: sans-serif;
+      }
+      canvas {
+        width: 500px;
+        height: 500px;
+        border: 1px solid black;
+        background-color: #fff;
+      }
+      .controls {
+        width: 500px;
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 13px;
+      }
+      .controls label {
+        display: grid;
+        grid-template-columns: 110px 1fr 48px;
+        align-items: center;
+        gap: 8px;
+      }
+      .controls input[type="range"] {
+        width: 100%;
+      }
+      .controls .value {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .controls button {
+        justify-self: start;
+        padding: 4px 12px;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="500" height="500" id="canvas"></canvas>
+    <div class="controls">
+      <label>
+        <span>Corner radius</span>
+        <input type="range" id="corner" min="0" max="25" step="1" value="16" />
+        <span class="value" id="cornerValue">16</span>
+      </label>
+      <label>
+        <span>Path offset</span>
+        <input type="range" id="offset" min="-24" max="24" step="1" value="0" />
+        <span class="value" id="offsetValue">0</span>
+      </label>
+      <div style="display: flex; gap: 8px">
+        <button id="clear">Clear</button>
+        <button id="export">Export SVG</button>
+      </div>
+      <p>Coded with Claude Fable 5</p>
+    </div>
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      const W = 500;
+      const H = 500;
+      let cornerRadius = 16;
+      let pathOffset = 0;
+      let gridNumber = 10;
+      let gridW = W / gridNumber;
+      let gridH = H / gridNumber;
+      let cells = new Array(gridNumber);
+      for (let i = 0; i < cells.length; i++) {
+        cells[i] = new Array(gridNumber).fill(0);
+      }
+
+      let rect = canvas.getBoundingClientRect();
+      let dirty = true; // only recompute when something changed
+      const markDirty = () => {
+        dirty = true;
+      };
+      let currentLoops = []; // latest contour loops, for SVG export
+
+      canvas.addEventListener("click", (e) => {
+        let i = Math.floor((e.clientX - rect.left) / gridW);
+        let j = Math.floor((e.clientY - rect.top) / gridH);
+        cells[i][j] = cells[i][j] === 1 ? 0 : 1;
+        markDirty();
+      });
+
+      window.addEventListener("resize", () => {
+        rect = canvas.getBoundingClientRect();
+      });
+
+      const cornerInput = document.getElementById("corner");
+      const cornerValue = document.getElementById("cornerValue");
+      const offsetInput = document.getElementById("offset");
+      const offsetValue = document.getElementById("offsetValue");
+
+      cornerInput.addEventListener("input", () => {
+        cornerRadius = Number(cornerInput.value);
+        cornerValue.textContent = cornerInput.value;
+        markDirty();
+      });
+      offsetInput.addEventListener("input", () => {
+        pathOffset = Number(offsetInput.value);
+        offsetValue.textContent = offsetInput.value;
+        markDirty();
+      });
+      document.getElementById("clear").addEventListener("click", () => {
+        for (let i = 0; i < cells.length; i++) {
+          cells[i].fill(0);
+        }
+        markDirty();
+      });
+
+      // Turn a rectilinear loop into drawing commands with every corner
+      // rounded by a fixed radius r: straight edges stay dead flat, and each
+      // corner becomes one quadratic. r is clamped per corner so neighbouring
+      // rounds never overlap. Works for convex and concave corners alike;
+      // r = 0 keeps the exact square corners.
+      const roundedCommands = (loop, r) => {
+        const n = loop.length;
+        const cmds = [];
+        if (n < 3) return cmds;
+        const at = (i) => loop[((i % n) + n) % n];
+        const info = [];
+        for (let i = 0; i < n; i++) {
+          const v = at(i);
+          const p = at(i - 1);
+          const nx = at(i + 1);
+          const dpx = p[0] - v[0];
+          const dpy = p[1] - v[1];
+          const dnx = nx[0] - v[0];
+          const dny = nx[1] - v[1];
+          const lp = Math.hypot(dpx, dpy) || 1;
+          const ln = Math.hypot(dnx, dny) || 1;
+          const rr = Math.min(r, lp * 0.5, ln * 0.5);
+          info.push({
+            v,
+            a: [v[0] + (dpx / lp) * rr, v[1] + (dpy / lp) * rr],
+            b: [v[0] + (dnx / ln) * rr, v[1] + (dny / ln) * rr],
+          });
+        }
+        cmds.push(["M", info[0].a[0], info[0].a[1]]);
+        for (let i = 0; i < n; i++) {
+          const c = info[i];
+          cmds.push(["Q", c.v[0], c.v[1], c.b[0], c.b[1]]);
+          const na = info[(i + 1) % n].a;
+          cmds.push(["L", na[0], na[1]]);
+        }
+        cmds.push(["Z"]);
+        return cmds;
+      };
+
+      // Convert the contour loops into one SVG path "d" string.
+      const loopsToPath = (loops) => {
+        const n2 = (v) => Math.round(v * 100) / 100;
+        let d = "";
+        for (const loop of loops) {
+          for (const c of roundedCommands(loop, cornerRadius)) {
+            if (c[0] === "M") d += `M${n2(c[1])},${n2(c[2])}`;
+            else if (c[0] === "L") d += `L${n2(c[1])},${n2(c[2])}`;
+            else if (c[0] === "Q")
+              d += `Q${n2(c[1])},${n2(c[2])} ${n2(c[3])},${n2(c[4])}`;
+            else if (c[0] === "Z") d += "Z";
+          }
+        }
+        return d;
+      };
+
+      document.getElementById("export").addEventListener("click", () => {
+        const d = loopsToPath(currentLoops);
+        const svg =
+          `<svg xmlns="http://www.w3.org/2000/svg" ` +
+          `viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">\n` +
+          `  <path d="${d}" fill="#000" fill-rule="evenodd"/>\n` +
+          `</svg>\n`;
+        const blob = new Blob([svg], { type: "image/svg+xml" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "20260724.svg";
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      const drawGrid = () => {
+        ctx.strokeStyle = "rgba(0,0,0,0.06)";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        for (let k = 1; k < gridNumber; k++) {
+          ctx.moveTo(k * gridW, 0);
+          ctx.lineTo(k * gridW, H);
+          ctx.moveTo(0, k * gridH);
+          ctx.lineTo(W, k * gridH);
+        }
+        ctx.stroke();
+      };
+
+      // Exact outline of a union of axis-aligned rectangles, via coordinate
+      // compression: mark covered cells of the compressed grid, emit the
+      // boundary edges between covered and uncovered cells, stitch them into
+      // closed loops, and merge collinear runs. Every vertex is an exact
+      // corner coordinate — no sampling, no approximation, minimal anchors.
+      // Holes and separate islands come out as their own loops (evenodd).
+      const buildRectUnionLoops = (rects) => {
+        if (rects.length === 0) return [];
+        const xs = [...new Set(rects.flatMap((r) => [r.x0, r.x1]))].sort(
+          (a, b) => a - b
+        );
+        const ys = [...new Set(rects.flatMap((r) => [r.y0, r.y1]))].sort(
+          (a, b) => a - b
+        );
+        const nx = xs.length - 1;
+        const ny = ys.length - 1;
+        const xi = new Map(xs.map((v, i) => [v, i]));
+        const yi = new Map(ys.map((v, i) => [v, i]));
+        const filled = Array.from({ length: nx }, () =>
+          new Array(ny).fill(false)
+        );
+        for (const r of rects) {
+          const x0 = xi.get(r.x0);
+          const x1 = xi.get(r.x1);
+          const y0 = yi.get(r.y0);
+          const y1 = yi.get(r.y1);
+          for (let ix = x0; ix < x1; ix++) {
+            for (let iy = y0; iy < y1; iy++) filled[ix][iy] = true;
+          }
+        }
+        const isF = (ix, iy) =>
+          ix >= 0 && iy >= 0 && ix < nx && iy < ny && filled[ix][iy];
+
+        // Directed boundary segments, each tagged with its emitting cell.
+        const segs = [];
+        for (let ix = 0; ix < nx; ix++) {
+          for (let iy = 0; iy < ny; iy++) {
+            if (!filled[ix][iy]) continue;
+            const cell = ix * ny + iy;
+            if (!isF(ix, iy - 1))
+              segs.push({ a: [xs[ix], ys[iy]], b: [xs[ix + 1], ys[iy]], cell });
+            if (!isF(ix, iy + 1))
+              segs.push({
+                a: [xs[ix + 1], ys[iy + 1]],
+                b: [xs[ix], ys[iy + 1]],
+                cell,
+              });
+            if (!isF(ix - 1, iy))
+              segs.push({ a: [xs[ix], ys[iy + 1]], b: [xs[ix], ys[iy]], cell });
+            if (!isF(ix + 1, iy))
+              segs.push({
+                a: [xs[ix + 1], ys[iy]],
+                b: [xs[ix + 1], ys[iy + 1]],
+                cell,
+              });
+          }
+        }
+
+        // Chain directed segments head-to-tail into closed loops. At a corner
+        // node where two filled cells touch only diagonally there are two
+        // outgoing candidates: prefer the one emitted by the OTHER cell, so
+        // the path crosses over to the diagonal neighbour and the shape stays
+        // one connected loop. The vertex is then visited twice, once per side,
+        // and corner rounding gives each visit a concave fillet — the neck.
+        const key = (p) => p[0] + "," + p[1];
+        const byStart = new Map();
+        segs.forEach((s, i) => {
+          const k = key(s.a);
+          if (!byStart.has(k)) byStart.set(k, []);
+          byStart.get(k).push(i);
+        });
+        const used = new Array(segs.length).fill(false);
+        const loops = [];
+        for (let i = 0; i < segs.length; i++) {
+          if (used[i]) continue;
+          const loop = [];
+          let cur = i;
+          while (cur != null && !used[cur]) {
+            used[cur] = true;
+            const s = segs[cur];
+            loop.push(s.a);
+            const cands = byStart.get(key(s.b)) || [];
+            cur = null;
+            for (const c of cands) {
+              if (!used[c] && segs[c].cell !== s.cell) {
+                cur = c;
+                break;
+              }
+            }
+            if (cur === null) {
+              for (const c of cands) {
+                if (!used[c]) {
+                  cur = c;
+                  break;
+                }
+              }
+            }
+          }
+          // Merge collinear runs so each straight edge is one segment.
+          const merged = [];
+          const n = loop.length;
+          for (let m = 0; m < n; m++) {
+            const p = loop[(m - 1 + n) % n];
+            const v = loop[m];
+            const q = loop[(m + 1) % n];
+            const collinear =
+              (p[0] === v[0] && v[0] === q[0]) ||
+              (p[1] === v[1] && v[1] === q[1]);
+            if (!collinear) merged.push(v);
+          }
+          if (merged.length >= 4) loops.push(merged);
+        }
+        return loops;
+      };
+
+      // Draw the loops as a single vector path with fixed-radius rounded corners.
+      const fillContours = (loops) => {
+        ctx.fillStyle = "#000";
+        ctx.beginPath();
+        for (const loop of loops) {
+          for (const c of roundedCommands(loop, cornerRadius)) {
+            if (c[0] === "M") ctx.moveTo(c[1], c[2]);
+            else if (c[0] === "L") ctx.lineTo(c[1], c[2]);
+            else if (c[0] === "Q") ctx.quadraticCurveTo(c[1], c[2], c[3], c[4]);
+            else if (c[0] === "Z") ctx.closePath();
+          }
+        }
+        ctx.fill("evenodd");
+      };
+
+      const setup = () => {
+        gridW = W / gridNumber;
+        gridH = H / gridNumber;
+        requestAnimationFrame(draw);
+      };
+
+      const draw = () => {
+        if (!dirty) {
+          requestAnimationFrame(draw);
+          return;
+        }
+        dirty = false;
+
+        ctx.clearRect(0, 0, W, H);
+        drawGrid();
+
+        // 1) Detect filled cells and merge contiguous runs into maximal
+        //    rectangles (straight edges stay flat, no internal seams).
+        const rem = cells.map((col) => col.slice());
+        const boxes = [];
+        for (let i = 0; i < gridNumber; i++) {
+          for (let j = 0; j < gridNumber; j++) {
+            if (rem[i][j] !== 1) continue;
+
+            // Candidate A: grow width, then height. Candidate B: the reverse.
+            let ax1 = i;
+            while (ax1 + 1 < gridNumber && rem[ax1 + 1][j] === 1) ax1++;
+            let ay1 = j;
+            for (let grow = true; grow && ay1 + 1 < gridNumber; ) {
+              for (let xx = i; xx <= ax1; xx++) {
+                if (rem[xx][ay1 + 1] !== 1) grow = false;
+              }
+              if (grow) ay1++;
+            }
+            let by1 = j;
+            while (by1 + 1 < gridNumber && rem[i][by1 + 1] === 1) by1++;
+            let bx1 = i;
+            for (let grow = true; grow && bx1 + 1 < gridNumber; ) {
+              for (let yy = j; yy <= by1; yy++) {
+                if (rem[bx1 + 1][yy] !== 1) grow = false;
+              }
+              if (grow) bx1++;
+            }
+            const areaA = (ax1 + 1 - i) * (ay1 + 1 - j);
+            const areaB = (bx1 + 1 - i) * (by1 + 1 - j);
+            const x1 = areaA >= areaB ? ax1 : bx1;
+            const y1 = areaA >= areaB ? ay1 : by1;
+
+            for (let xx = i; xx <= x1; xx++) {
+              for (let yy = j; yy <= y1; yy++) rem[xx][yy] = 0;
+            }
+            boxes.push({
+              cx: ((i + x1 + 1) / 2) * gridW,
+              cy: ((j + y1 + 1) / 2) * gridH,
+              hw: ((x1 + 1 - i) * gridW) / 2,
+              hh: ((y1 + 1 - j) * gridH) / 2,
+            });
+          }
+        }
+
+        // 2) Apply the path offset by inflating/deflating every rectangle;
+        //    boxes that shrink away are dropped (shape splits into islands).
+        const off = pathOffset;
+        const rects = [];
+        for (const b of boxes) {
+          const hw = b.hw + off;
+          const hh = b.hh + off;
+          if (hw <= 0 || hh <= 0) continue;
+          rects.push({
+            x0: b.cx - hw,
+            y0: b.cy - hh,
+            x1: b.cx + hw,
+            y1: b.cy + hh,
+          });
+        }
+
+        // 3) Trace the exact union outline and draw with rounded corners.
+        //    Diagonal neighbours touch at a corner; the tracer crosses over
+        //    there and rounding fillets both sides into an amoeba-like neck.
+        const loops = buildRectUnionLoops(rects);
+        fillContours(loops);
+        currentLoops = loops;
+
+        requestAnimationFrame(draw);
+      };
+      setup();
+    </script>
+  </body>
+</html>
