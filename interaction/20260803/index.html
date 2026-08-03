@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>20260803</title>
+    <meta name="viewport" content="width=640" />
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overscroll-behavior: none;
+      }
+      body {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-family: sans-serif;
+      }
+      canvas {
+        width: 500px;
+        height: 500px;
+        border: 1px solid black;
+        background-color: #fff;
+      }
+      .controls {
+        width: 500px;
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 13px;
+      }
+      .controls label {
+        display: grid;
+        grid-template-columns: 110px 1fr 48px;
+        align-items: center;
+        gap: 8px;
+      }
+      .controls input[type="range"] {
+        width: 100%;
+      }
+      .controls .value {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .controls button {
+        justify-self: start;
+        padding: 4px 12px;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="500" height="500" id="canvas"></canvas>
+    <div class="controls">
+      <label>
+        <span>Corner radius</span>
+        <input type="range" id="corner" min="0" max="25" step="1" value="16" />
+        <span class="value" id="cornerValue">16</span>
+      </label>
+      <label>
+        <span>Path offset</span>
+        <input type="range" id="offset" min="-24" max="24" step="1" value="0" />
+        <span class="value" id="offsetValue">0</span>
+      </label>
+      <label>
+        <span>Fill level</span>
+        <input type="range" id="fill" min="1" max="8" step="1" value="8" />
+        <span class="value" id="fillValue">8</span>
+      </label>
+      <label>
+        <span>Fill color</span>
+        <input type="color" id="color" value="#000000" />
+        <span class="value" id="colorValue">#000000</span>
+      </label>
+      <div style="display: flex; gap: 8px">
+        <button id="clear">Clear</button>
+        <button id="export">Export SVG</button>
+        <button id="exportData">Export Data</button>
+        <button id="importData">Import Data</button>
+        <input
+          type="file"
+          id="importFile"
+          accept=".json,application/json"
+          style="display: none"
+        />
+      </div>
+      <p>Coded with Claude Fable 5</p>
+    </div>
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      const W = 500;
+      const H = 500;
+      let cornerRadius = 16;
+      let pathOffset = 0;
+      let fillLevel = 8; // painting level 1..8, 8 = solid
+      let fillColor = "#000000"; // painting colour
+      let gridNumber = 30;
+      let gridW = W / gridNumber;
+      let gridH = H / gridNumber;
+      let cells = new Array(gridNumber);
+      let colors = new Array(gridNumber); // per-cell colour (used when level > 0)
+      for (let i = 0; i < cells.length; i++) {
+        cells[i] = new Array(gridNumber).fill(0);
+        colors[i] = new Array(gridNumber).fill("#000000");
+      }
+
+      let rect = canvas.getBoundingClientRect();
+      let dirty = true; // only recompute when something changed
+      const markDirty = () => {
+        dirty = true;
+      };
+      let currentLoops = []; // latest contour loops, for SVG export
+
+      // Cells hold 0 (empty) or a fill level 1..8 plus a colour. Clicking
+      // paints with the current level+colour; clicking a cell that already
+      // has exactly that level and colour erases it.
+      canvas.addEventListener("click", (e) => {
+        let i = Math.floor((e.clientX - rect.left) / gridW);
+        let j = Math.floor((e.clientY - rect.top) / gridH);
+        if (cells[i][j] === fillLevel && colors[i][j] === fillColor) {
+          cells[i][j] = 0;
+        } else {
+          cells[i][j] = fillLevel;
+          colors[i][j] = fillColor;
+        }
+        markDirty();
+      });
+
+      window.addEventListener("resize", () => {
+        rect = canvas.getBoundingClientRect();
+      });
+
+      const cornerInput = document.getElementById("corner");
+      const cornerValue = document.getElementById("cornerValue");
+      const offsetInput = document.getElementById("offset");
+      const offsetValue = document.getElementById("offsetValue");
+      const fillInput = document.getElementById("fill");
+      const fillValue = document.getElementById("fillValue");
+
+      cornerInput.addEventListener("input", () => {
+        cornerRadius = Number(cornerInput.value);
+        cornerValue.textContent = cornerInput.value;
+        markDirty();
+      });
+      offsetInput.addEventListener("input", () => {
+        pathOffset = Number(offsetInput.value);
+        offsetValue.textContent = offsetInput.value;
+        markDirty();
+      });
+      fillInput.addEventListener("input", () => {
+        fillLevel = Number(fillInput.value);
+        fillValue.textContent = fillInput.value;
+        markDirty();
+      });
+      const colorInput = document.getElementById("color");
+      const colorValue = document.getElementById("colorValue");
+      colorInput.addEventListener("input", () => {
+        fillColor = colorInput.value;
+        colorValue.textContent = colorInput.value;
+      });
+      document.getElementById("clear").addEventListener("click", () => {
+        for (let i = 0; i < cells.length; i++) {
+          cells[i].fill(0);
+          colors[i].fill("#000000");
+        }
+        markDirty();
+      });
+
+      // --- Dither fill -----------------------------------------------------
+      // Ordered dither from a 4x4 Bayer matrix: a TILE px tile of 4x4 square
+      // dots, SUB px each. Level L (1..8) turns on the 2*L subcells with the
+      // lowest Bayer rank; level 8 is solid. Pure vector — on canvas the dots
+      // are rect fills clipped by the outline path, in SVG they live in a
+      // <pattern> element.
+      const BAYER = [
+        [0, 8, 2, 10],
+        [12, 4, 14, 6],
+        [3, 11, 1, 9],
+        [15, 7, 13, 5],
+      ];
+      const TILE = 16;
+      const SUB = TILE / 4;
+      const ditherDots = (level) => {
+        const dots = [];
+        for (let y = 0; y < 4; y++) {
+          for (let x = 0; x < 4; x++) {
+            if (BAYER[y][x] < 2 * level) dots.push([x * SUB, y * SUB]);
+          }
+        }
+        return dots;
+      };
+
+      // --- JSON data format ----------------------------------------------
+      // {
+      //   "grid": 30,          grid resolution (rebuilds the board on import)
+      //   "corner": 16,        corner radius
+      //   "offset": 0,         path offset
+      //   "fill": 8,           current painting level, 1..8 (8 = solid)
+      //   "color": "#000000",  current painting colour
+      //   "palette": ["#000000", "#ff3366"],   colours used by cells
+      //   "cells": [           <grid> strings of <grid> chars each:
+      //     "..3..8..",        1-8 = cell fill level, . = empty
+      //     ...                ("#" is accepted as 8 for older files)
+      //   ],
+      //   "colors": [          parallel to cells: palette index per cell
+      //     "..0..1..",        (0-9a-zA-Z), . = empty
+      //   ]
+      // }
+      // Everything except grid/cells may be omitted; current values (or
+      // black) are kept.
+      const PALETTE_CHARS =
+        "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const serialize = () => {
+        const rows = [];
+        const colorRows = [];
+        const palette = [];
+        const pindex = new Map();
+        for (let j = 0; j < gridNumber; j++) {
+          let row = "";
+          let colorRow = "";
+          for (let i = 0; i < gridNumber; i++) {
+            if (cells[i][j] === 0) {
+              row += ".";
+              colorRow += ".";
+              continue;
+            }
+            row += String(cells[i][j]);
+            const c = colors[i][j];
+            if (!pindex.has(c)) {
+              if (palette.length >= PALETTE_CHARS.length) {
+                throw new Error("too many distinct colours to export");
+              }
+              pindex.set(c, palette.length);
+              palette.push(c);
+            }
+            colorRow += PALETTE_CHARS[pindex.get(c)];
+          }
+          rows.push(row);
+          colorRows.push(colorRow);
+        }
+        return JSON.stringify(
+          {
+            grid: gridNumber,
+            corner: cornerRadius,
+            offset: pathOffset,
+            fill: fillLevel,
+            color: fillColor,
+            palette,
+            cells: rows,
+            colors: colorRows,
+          },
+          null,
+          2
+        );
+      };
+
+      const deserialize = (text) => {
+        const data = JSON.parse(text);
+        const n = data.grid;
+        if (!Number.isInteger(n) || n < 2 || n > 200) {
+          throw new Error("bad grid size: " + n);
+        }
+        const header = {
+          grid: n,
+          corner: Number.isFinite(data.corner) ? data.corner : cornerRadius,
+          offset: Number.isFinite(data.offset) ? data.offset : pathOffset,
+          fill: Number.isFinite(data.fill) ? data.fill : fillLevel,
+          color: typeof data.color === "string" ? data.color : fillColor,
+        };
+        const rows = data.cells;
+        if (!Array.isArray(rows) || rows.length !== n) {
+          throw new Error(`cells must be an array of ${n} rows`);
+        }
+        const palette = Array.isArray(data.palette) ? data.palette : [];
+        const colorRows = Array.isArray(data.colors) ? data.colors : null;
+        const grid = Array.from({ length: n }, () => new Array(n).fill(0));
+        const gridColors = Array.from({ length: n }, () =>
+          new Array(n).fill("#000000")
+        );
+        for (let j = 0; j < n; j++) {
+          if (typeof rows[j] !== "string" || rows[j].length !== n) {
+            throw new Error(`row ${j + 1} must be a string of ${n} chars`);
+          }
+          for (let i = 0; i < n; i++) {
+            const ch = rows[j][i];
+            if (ch === ".") grid[i][j] = 0;
+            else if (ch === "#") grid[i][j] = 8;
+            else if (ch >= "1" && ch <= "8") grid[i][j] = Number(ch);
+            else throw new Error(`invalid char "${ch}" in row ${j + 1}`);
+            if (grid[i][j] > 0 && colorRows) {
+              const cc = (colorRows[j] || "")[i];
+              const idx = PALETTE_CHARS.indexOf(cc);
+              if (idx >= 0 && typeof palette[idx] === "string") {
+                gridColors[i][j] = palette[idx];
+              }
+            }
+          }
+        }
+        return { header, grid, gridColors };
+      };
+
+      const applyState = ({ header, grid, gridColors }) => {
+        gridNumber = header.grid;
+        gridW = W / gridNumber;
+        gridH = H / gridNumber;
+        cells = grid;
+        colors = gridColors;
+        // route through the inputs so UI, clamping and variables stay in sync
+        cornerInput.value = String(header.corner);
+        cornerInput.dispatchEvent(new Event("input"));
+        offsetInput.value = String(header.offset);
+        offsetInput.dispatchEvent(new Event("input"));
+        fillInput.value = String(header.fill);
+        fillInput.dispatchEvent(new Event("input"));
+        colorInput.value = header.color;
+        colorInput.dispatchEvent(new Event("input"));
+        markDirty();
+      };
+
+      const download = (content, filename, type) => {
+        const blob = new Blob([content], { type });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+      };
+
+      document.getElementById("exportData").addEventListener("click", () => {
+        try {
+          download(serialize(), "20260803.json", "application/json");
+        } catch (err) {
+          alert("Export failed: " + err.message);
+        }
+      });
+
+      const importFile = document.getElementById("importFile");
+      document.getElementById("importData").addEventListener("click", () => {
+        importFile.click();
+      });
+      importFile.addEventListener("change", async () => {
+        const f = importFile.files[0];
+        if (!f) return;
+        try {
+          applyState(deserialize(await f.text()));
+        } catch (err) {
+          alert("Import failed: " + err.message);
+        }
+        importFile.value = "";
+      });
+
+      // Turn a rectilinear loop into drawing commands, rounding corner i by
+      // radius rrs[i]: straight edges stay dead flat, each corner becomes one
+      // quadratic. Works for convex and concave corners alike; 0 keeps the
+      // exact square corner.
+      const roundedCommands = (loop, rrs) => {
+        const n = loop.length;
+        const cmds = [];
+        if (n < 3) return cmds;
+        const at = (i) => loop[((i % n) + n) % n];
+        const info = [];
+        for (let i = 0; i < n; i++) {
+          const v = at(i);
+          const p = at(i - 1);
+          const nx = at(i + 1);
+          const dpx = p[0] - v[0];
+          const dpy = p[1] - v[1];
+          const dnx = nx[0] - v[0];
+          const dny = nx[1] - v[1];
+          const lp = Math.hypot(dpx, dpy) || 1;
+          const ln = Math.hypot(dnx, dny) || 1;
+          const rr = rrs[i];
+          info.push({
+            v,
+            a: [v[0] + (dpx / lp) * rr, v[1] + (dpy / lp) * rr],
+            b: [v[0] + (dnx / ln) * rr, v[1] + (dny / ln) * rr],
+          });
+        }
+        cmds.push(["M", info[0].a[0], info[0].a[1]]);
+        for (let i = 0; i < n; i++) {
+          const c = info[i];
+          cmds.push(["Q", c.v[0], c.v[1], c.b[0], c.b[1]]);
+          const na = info[(i + 1) % n].a;
+          cmds.push(["L", na[0], na[1]]);
+        }
+        cmds.push(["Z"]);
+        return cmds;
+      };
+
+      // Commands for ALL loops with one shared radius policy: each corner is
+      // clamped to half of its adjacent edges, and every visit of the same
+      // vertex — whether a loop crossing itself at a diagonal-neck pinch or
+      // two loops (outline and hole) meeting there — gets the same smallest
+      // radius, so both sides of a neck are always symmetric.
+      const loopsToCommands = (loops, r) => {
+        const radii = loops.map((loop) => {
+          const n = loop.length;
+          const rrs = new Array(n);
+          for (let i = 0; i < n; i++) {
+            const v = loop[i];
+            const p = loop[(i - 1 + n) % n];
+            const nx = loop[(i + 1) % n];
+            const lp = Math.hypot(p[0] - v[0], p[1] - v[1]) || 1;
+            const ln = Math.hypot(nx[0] - v[0], nx[1] - v[1]) || 1;
+            rrs[i] = Math.min(r, lp * 0.5, ln * 0.5);
+          }
+          return rrs;
+        });
+        const byVertex = new Map();
+        loops.forEach((loop, li) => {
+          loop.forEach((v, i) => {
+            const k = v[0] + "," + v[1];
+            if (!byVertex.has(k)) byVertex.set(k, []);
+            byVertex.get(k).push([li, i]);
+          });
+        });
+        for (const refs of byVertex.values()) {
+          if (refs.length > 1) {
+            let m = Infinity;
+            for (const [li, i] of refs) m = Math.min(m, radii[li][i]);
+            for (const [li, i] of refs) radii[li][i] = m;
+          }
+        }
+        return loops.map((loop, li) => roundedCommands(loop, radii[li]));
+      };
+
+      // Convert the contour loops into one SVG path "d" string.
+      const loopsToPath = (loops) => {
+        const n2 = (v) => Math.round(v * 100) / 100;
+        let d = "";
+        for (const cmds of loopsToCommands(loops, cornerRadius)) {
+          for (const c of cmds) {
+            if (c[0] === "M") d += `M${n2(c[1])},${n2(c[2])}`;
+            else if (c[0] === "L") d += `L${n2(c[1])},${n2(c[2])}`;
+            else if (c[0] === "Q")
+              d += `Q${n2(c[1])},${n2(c[2])} ${n2(c[3])},${n2(c[4])}`;
+            else if (c[0] === "Z") d += "Z";
+          }
+        }
+        return d;
+      };
+
+      // SVG export: the outline is a clipPath, and each (level, colour)
+      // combination becomes ONE <path> of real rect geometry (spans for
+      // solid, individual dither dots otherwise). No <pattern> elements —
+      // everything is plain paths, so in Illustrator etc. you select a
+      // path and change its fill to recolour that whole level/colour group.
+      // Subpaths of one fill fuse without hairline antialiasing seams.
+      document.getElementById("export").addEventListener("click", () => {
+        const d = loopsToPath(currentLoops);
+        const n2 = (v) => Math.round(v * 100) / 100;
+        let groupPaths = "";
+        for (const g of spanGroups()) {
+          let dd = "";
+          for (const span of g.spans) {
+            for (const [x0, y0, x1, y1] of spanRects(span)) {
+              dd += `M${n2(x0)},${n2(y0)}H${n2(x1)}V${n2(y1)}H${n2(x0)}Z`;
+            }
+          }
+          groupPaths += `    <path d="${dd}" fill="${g.color}"/>\n`;
+        }
+        const svg =
+          `<svg xmlns="http://www.w3.org/2000/svg" ` +
+          `viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">\n` +
+          `  <defs>\n` +
+          `    <clipPath id="shape" clip-rule="evenodd"><path d="${d}"/></clipPath>\n` +
+          `  </defs>\n` +
+          `  <g clip-path="url(#shape)">\n` +
+          groupPaths +
+          `  </g>\n` +
+          `</svg>\n`;
+        download(svg, "20260803.svg", "image/svg+xml");
+      });
+
+      const drawGrid = () => {
+        ctx.strokeStyle = "rgba(0,0,0,0.06)";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        for (let k = 1; k < gridNumber; k++) {
+          ctx.moveTo(k * gridW, 0);
+          ctx.lineTo(k * gridW, H);
+          ctx.moveTo(0, k * gridH);
+          ctx.lineTo(W, k * gridH);
+        }
+        ctx.stroke();
+      };
+
+      // Exact outline of a union of axis-aligned rectangles, via coordinate
+      // compression: mark covered cells of the compressed grid, emit the
+      // boundary edges between covered and uncovered cells, stitch them into
+      // closed loops, and merge collinear runs. Every vertex is an exact
+      // corner coordinate — no sampling, no approximation, minimal anchors.
+      // Holes and separate islands come out as their own loops (evenodd).
+      const buildRectUnionLoops = (rects) => {
+        if (rects.length === 0) return [];
+        const xs = [...new Set(rects.flatMap((r) => [r.x0, r.x1]))].sort(
+          (a, b) => a - b
+        );
+        const ys = [...new Set(rects.flatMap((r) => [r.y0, r.y1]))].sort(
+          (a, b) => a - b
+        );
+        const nx = xs.length - 1;
+        const ny = ys.length - 1;
+        const xi = new Map(xs.map((v, i) => [v, i]));
+        const yi = new Map(ys.map((v, i) => [v, i]));
+        const filled = Array.from({ length: nx }, () =>
+          new Array(ny).fill(false)
+        );
+        for (const r of rects) {
+          const x0 = xi.get(r.x0);
+          const x1 = xi.get(r.x1);
+          const y0 = yi.get(r.y0);
+          const y1 = yi.get(r.y1);
+          for (let ix = x0; ix < x1; ix++) {
+            for (let iy = y0; iy < y1; iy++) filled[ix][iy] = true;
+          }
+        }
+        const isF = (ix, iy) =>
+          ix >= 0 && iy >= 0 && ix < nx && iy < ny && filled[ix][iy];
+
+        // Directed boundary segments, each tagged with its emitting cell.
+        const segs = [];
+        for (let ix = 0; ix < nx; ix++) {
+          for (let iy = 0; iy < ny; iy++) {
+            if (!filled[ix][iy]) continue;
+            const cell = ix * ny + iy;
+            if (!isF(ix, iy - 1))
+              segs.push({ a: [xs[ix], ys[iy]], b: [xs[ix + 1], ys[iy]], cell });
+            if (!isF(ix, iy + 1))
+              segs.push({
+                a: [xs[ix + 1], ys[iy + 1]],
+                b: [xs[ix], ys[iy + 1]],
+                cell,
+              });
+            if (!isF(ix - 1, iy))
+              segs.push({ a: [xs[ix], ys[iy + 1]], b: [xs[ix], ys[iy]], cell });
+            if (!isF(ix + 1, iy))
+              segs.push({
+                a: [xs[ix + 1], ys[iy]],
+                b: [xs[ix + 1], ys[iy + 1]],
+                cell,
+              });
+          }
+        }
+
+        // Chain directed segments head-to-tail into closed loops. At a corner
+        // node where two filled cells touch only diagonally there are two
+        // outgoing candidates: prefer the one emitted by the OTHER cell, so
+        // the path crosses over to the diagonal neighbour and the shape stays
+        // one connected loop. The vertex is then visited twice, once per side,
+        // and corner rounding gives each visit a concave fillet — the neck.
+        const key = (p) => p[0] + "," + p[1];
+        const byStart = new Map();
+        segs.forEach((s, i) => {
+          const k = key(s.a);
+          if (!byStart.has(k)) byStart.set(k, []);
+          byStart.get(k).push(i);
+        });
+        const used = new Array(segs.length).fill(false);
+        const loops = [];
+        for (let i = 0; i < segs.length; i++) {
+          if (used[i]) continue;
+          const loop = [];
+          let cur = i;
+          while (cur != null && !used[cur]) {
+            used[cur] = true;
+            const s = segs[cur];
+            loop.push(s.a);
+            const cands = byStart.get(key(s.b)) || [];
+            cur = null;
+            for (const c of cands) {
+              if (!used[c] && segs[c].cell !== s.cell) {
+                cur = c;
+                break;
+              }
+            }
+            if (cur === null) {
+              for (const c of cands) {
+                if (!used[c]) {
+                  cur = c;
+                  break;
+                }
+              }
+            }
+          }
+          // Merge collinear runs so each straight edge is one segment.
+          const merged = [];
+          const n = loop.length;
+          for (let m = 0; m < n; m++) {
+            const p = loop[(m - 1 + n) % n];
+            const v = loop[m];
+            const q = loop[(m + 1) % n];
+            const collinear =
+              (p[0] === v[0] && v[0] === q[0]) ||
+              (p[1] === v[1] && v[1] === q[1]);
+            if (!collinear) merged.push(v);
+          }
+          if (merged.length >= 4) loops.push(merged);
+        }
+        return loops;
+      };
+
+      // Every grid cell gets an owner: filled cells own themselves, and empty
+      // cells near the shape (where necks and positive offsets can spill) are
+      // claimed by the nearest filled cell via a few BFS rings. Each owned
+      // cell is then painted with its owner's dither level, so the pattern is
+      // controlled per cell while the outline stays one connected shape.
+      const buildOwners = () => {
+        const owner = Array.from({ length: gridNumber }, () =>
+          new Array(gridNumber).fill(-1)
+        );
+        let ring = [];
+        for (let i = 0; i < gridNumber; i++) {
+          for (let j = 0; j < gridNumber; j++) {
+            if (cells[i][j] > 0) {
+              owner[i][j] = i * gridNumber + j;
+              ring.push([i, j]);
+            }
+          }
+        }
+        const reach = Math.max(pathOffset, 0) + cornerRadius;
+        const rings = Math.ceil(reach / Math.min(gridW, gridH)) + 1;
+        for (let r = 0; r < rings; r++) {
+          const next = [];
+          for (const [i, j] of ring) {
+            for (let dj = -1; dj <= 1; dj++) {
+              for (let di = -1; di <= 1; di++) {
+                const a = i + di;
+                const b = j + dj;
+                if (a < 0 || b < 0 || a >= gridNumber || b >= gridNumber)
+                  continue;
+                if (owner[a][b] === -1) {
+                  owner[a][b] = owner[i][j];
+                  next.push([a, b]);
+                }
+              }
+            }
+          }
+          ring = next;
+        }
+        return owner;
+      };
+
+      // Merge horizontal runs of owned cells with the same level AND colour
+      // into spans, so both canvas and SVG paint far fewer rectangles.
+      const ownerSpans = () => {
+        const owner = buildOwners();
+        const cellOf = (o) => [Math.floor(o / gridNumber), o % gridNumber];
+        const spans = [];
+        for (let j = 0; j < gridNumber; j++) {
+          let i = 0;
+          while (i < gridNumber) {
+            const o = owner[i][j];
+            if (o === -1) {
+              i++;
+              continue;
+            }
+            const [oi, oj] = cellOf(o);
+            const level = cells[oi][oj];
+            const color = colors[oi][oj];
+            let i1 = i;
+            while (i1 + 1 < gridNumber) {
+              const o2 = owner[i1 + 1][j];
+              if (o2 === -1) break;
+              const [oi2, oj2] = cellOf(o2);
+              if (cells[oi2][oj2] !== level || colors[oi2][oj2] !== color)
+                break;
+              i1++;
+            }
+            spans.push({
+              x0: i * gridW,
+              y0: j * gridH,
+              x1: (i1 + 1) * gridW,
+              y1: (j + 1) * gridH,
+              level,
+              color,
+            });
+            i = i1 + 1;
+          }
+        }
+        return spans;
+      };
+
+      // All rectangles needed to paint one span: the whole span for solid
+      // level 8, otherwise its dither dots clamped to the span. Dots are
+      // aligned to the global TILE lattice so the pattern phase is seamless
+      // across cells, on canvas and in the exported SVG alike.
+      const spanRects = (span) => {
+        if (span.level >= 8) {
+          return [[span.x0, span.y0, span.x1, span.y1]];
+        }
+        const dots = ditherDots(span.level);
+        const out = [];
+        const tx0 = Math.floor(span.x0 / TILE) * TILE;
+        const ty0 = Math.floor(span.y0 / TILE) * TILE;
+        for (let ty = ty0; ty < span.y1; ty += TILE) {
+          for (let tx = tx0; tx < span.x1; tx += TILE) {
+            for (const [dx, dy] of dots) {
+              const rx0 = Math.max(tx + dx, span.x0);
+              const ry0 = Math.max(ty + dy, span.y0);
+              const rx1 = Math.min(tx + dx + SUB, span.x1);
+              const ry1 = Math.min(ty + dy + SUB, span.y1);
+              if (rx1 > rx0 && ry1 > ry0) out.push([rx0, ry0, rx1, ry1]);
+            }
+          }
+        }
+        return out;
+      };
+
+      // Group spans by (level, colour) — one paint unit per combination.
+      const spanGroups = () => {
+        const groups = new Map();
+        for (const span of ownerSpans()) {
+          const k = span.level + "|" + span.color;
+          if (!groups.has(k)) {
+            groups.set(k, { level: span.level, color: span.color, spans: [] });
+          }
+          groups.get(k).spans.push(span);
+        }
+        return [...groups.values()];
+      };
+
+      // Draw the loops as one vector path with fixed-radius rounded corners,
+      // then fill the interior group by group: one path + one fill per
+      // (level, colour). Everything is rect/path fills — no raster ops.
+      const fillContours = (loops) => {
+        ctx.beginPath();
+        for (const cmds of loopsToCommands(loops, cornerRadius)) {
+          for (const c of cmds) {
+            if (c[0] === "M") ctx.moveTo(c[1], c[2]);
+            else if (c[0] === "L") ctx.lineTo(c[1], c[2]);
+            else if (c[0] === "Q") ctx.quadraticCurveTo(c[1], c[2], c[3], c[4]);
+            else if (c[0] === "Z") ctx.closePath();
+          }
+        }
+        ctx.save();
+        ctx.clip("evenodd");
+        for (const g of spanGroups()) {
+          ctx.fillStyle = g.color;
+          ctx.beginPath();
+          for (const span of g.spans) {
+            for (const [x0, y0, x1, y1] of spanRects(span)) {
+              ctx.rect(x0, y0, x1 - x0, y1 - y0);
+            }
+          }
+          ctx.fill();
+        }
+        ctx.restore();
+      };
+
+      const setup = () => {
+        gridW = W / gridNumber;
+        gridH = H / gridNumber;
+        requestAnimationFrame(draw);
+      };
+
+      const draw = () => {
+        if (!dirty) {
+          requestAnimationFrame(draw);
+          return;
+        }
+        dirty = false;
+
+        ctx.clearRect(0, 0, W, H);
+        drawGrid();
+
+        // 1) Detect filled cells and merge contiguous runs into maximal
+        //    rectangles (straight edges stay flat, no internal seams).
+        const rem = cells.map((col) => col.slice());
+        const boxes = [];
+        for (let i = 0; i < gridNumber; i++) {
+          for (let j = 0; j < gridNumber; j++) {
+            if (rem[i][j] < 1) continue;
+
+            // Candidate A: grow width, then height. Candidate B: the reverse.
+            let ax1 = i;
+            while (ax1 + 1 < gridNumber && rem[ax1 + 1][j] > 0) ax1++;
+            let ay1 = j;
+            for (let grow = true; grow && ay1 + 1 < gridNumber; ) {
+              for (let xx = i; xx <= ax1; xx++) {
+                if (rem[xx][ay1 + 1] < 1) grow = false;
+              }
+              if (grow) ay1++;
+            }
+            let by1 = j;
+            while (by1 + 1 < gridNumber && rem[i][by1 + 1] > 0) by1++;
+            let bx1 = i;
+            for (let grow = true; grow && bx1 + 1 < gridNumber; ) {
+              for (let yy = j; yy <= by1; yy++) {
+                if (rem[bx1 + 1][yy] < 1) grow = false;
+              }
+              if (grow) bx1++;
+            }
+            const areaA = (ax1 + 1 - i) * (ay1 + 1 - j);
+            const areaB = (bx1 + 1 - i) * (by1 + 1 - j);
+            const x1 = areaA >= areaB ? ax1 : bx1;
+            const y1 = areaA >= areaB ? ay1 : by1;
+
+            for (let xx = i; xx <= x1; xx++) {
+              for (let yy = j; yy <= y1; yy++) rem[xx][yy] = 0;
+            }
+            // Bounds come straight from grid indices so that shared
+            // boundaries are computed by the IDENTICAL expression and are
+            // bitwise-equal floats — a centre/half-extent detour introduces
+            // last-bit errors on grids like 30 where gridW isn't exact,
+            // silently splitting diagonal junctions.
+            boxes.push({
+              x0: i * gridW,
+              y0: j * gridH,
+              x1: (x1 + 1) * gridW,
+              y1: (y1 + 1) * gridH,
+            });
+          }
+        }
+
+        // 2) Apply the path offset by inflating/deflating every rectangle;
+        //    boxes that shrink away are dropped (shape splits into islands).
+        const off = pathOffset;
+        const rects = [];
+        for (const b of boxes) {
+          const x0 = b.x0 - off;
+          const y0 = b.y0 - off;
+          const x1 = b.x1 + off;
+          const y1 = b.y1 + off;
+          if (x1 - x0 <= 0 || y1 - y0 <= 0) continue;
+          rects.push({ x0, y0, x1, y1 });
+        }
+
+        // 3) Trace the exact union outline and draw with rounded corners.
+        //    Diagonal neighbours touch at a corner; the tracer crosses over
+        //    there and rounding fillets both sides into an amoeba-like neck.
+        const loops = buildRectUnionLoops(rects);
+        fillContours(loops);
+        currentLoops = loops;
+
+        requestAnimationFrame(draw);
+      };
+      setup();
+    </script>
+  </body>
+</html>
