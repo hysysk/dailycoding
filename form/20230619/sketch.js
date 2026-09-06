@@ -35,6 +35,11 @@ function triangleToCircumcenter(triangle) {
   return [[math.subtract(0, c.re), math.subtract(0, c.im)], radius];
 }
 
+function getDistance(point1, point2) {
+  let distance = math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
+  return distance;
+}
+
 for (let i = 0; i < 5; i++) {
   let triangle = pointsToTriangle({ x: Math.random() * 500, y: Math.random() * 500 }, { x: Math.random() * 500, y: Math.random() * 500 }, { x: Math.random() * 500, y: Math.random() * 500 });
   fillTriangle(triangle);
