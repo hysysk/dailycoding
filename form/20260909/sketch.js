@@ -103,7 +103,7 @@ function genDelaunay(points) {
 // --- 描画関数 ---
 
 function drawCircumcircles(ctx, delaunay, circumcenters, points) {
-  ctx.strokeStyle = "rgba(255, 0, 0, 0.25";
+  ctx.strokeStyle = "#000000";
   ctx.lineWidth = 1;
 
   const superPoints = [{ x: -2000, y: -2000 }, { x: 4000, y: -2000 }, { x: 1000, y: 4000 }];
@@ -124,7 +124,7 @@ function drawCircumcircles(ctx, delaunay, circumcenters, points) {
 }
 
 function drawDelaunay(ctx, delaunay, points) {
-  ctx.strokeStyle = "rgba(0, 0, 0, 0.25";
+  ctx.strokeStyle = "#000000";
   ctx.lineWidth = 1;
   const superPoints = [{ x: -2000, y: -2000 }, { x: 4000, y: -2000 }, { x: 1000, y: 4000 }];
 
@@ -140,7 +140,7 @@ function drawDelaunay(ctx, delaunay, points) {
     ctx.stroke();
   }
 
-  ctx.fillStyle = "#ff4444"; // 赤い点
+  ctx.fillStyle = "#000000";
   for (const p of points) {
     ctx.beginPath();
     ctx.arc(p[0], p[1], 4, 0, Math.PI * 2);
@@ -197,7 +197,7 @@ function main() {
 
   // ランダムな点の生成
   const points = [];
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 12; i++) {
     points.push([Math.random() * 400 + 50, Math.random() * 400 + 50]);
   }
 
